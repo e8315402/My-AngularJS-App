@@ -1,32 +1,34 @@
-export default (angular) =>  {
-  angular.module('myAngularJSApp')
-         .directive('sidebar', sidebar);
+export default (myAngularJSApp) => {
+    'use strict';
+
+    myAngularJSApp.directive('sidebar', sidebar);
 
     /** @ngInject */
-    function directive(Dependencies) {
+    function sidebar() {
 
-      function directiveController(){
-          var vm = this;
-          
-          init();
+        function sidebarController() {
+            var vm = this;
 
-          function init(){
+            init();
 
-          }
-      }
+            function init() {
 
-      function link(){
+            }
+        }
 
-      }
+        function link() {
 
-      return {
-          bindToController: true,
-          controller: directiveController,
-          controllerAs: 'Ctrl',
-          link: link,
-          restrict: 'AE',
-          scope: {},
-      }
-  }
-  
+        }
+
+        return {
+            bindToController: true,
+            controller: sidebarController,
+            controllerAs: 'Ctrl',
+            link: link,
+            template: '<p>sidebar</p>',
+            restrict: 'AE',
+            scope: {},
+        }
+    }
+
 };

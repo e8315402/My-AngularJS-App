@@ -1,12 +1,14 @@
 import angular from "angular";
-import 'sidebar.directive'
+import sidebar from './sidebar.directive.js';
 
-(function(){
+(function () {
     'use strict';
 
-    angular
+    let myAngularJSApp = angular
         .module('myAngularJSApp', [
-            
+
         ]);
+
+    sidebar(myAngularJSApp);
 
 }());
