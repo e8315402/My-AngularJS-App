@@ -25,7 +25,8 @@ export default (myAngularJSApp) => {
             controller: sidebarController,
             controllerAs: 'Ctrl',
             link: link,
-            templateUrl: 'sidebar.template.html',
+            // templateUrl: 'sidebar.template.html',
+            template: '<p>sidebar</p>',
             restrict: 'AE',
             scope: {},
         }

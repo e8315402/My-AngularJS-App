@@ -1,4 +1,6 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   mode: 'development',
   entry: path.join(__dirname, 'app.js'),
@@ -17,14 +19,18 @@ module.exports = {
       query: {
         presets: ['es2015']
       }
-    },
-    { test: /\.html$/, loader: "html" },
-    { test: /\.css$/, loader: "style!css" }
+    }
     ]
   },
   resolve: {
     extensions: ['.json', '.js', '.jsx', '.css']
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'My AngularJS App',
+      template: 'index.template.html'
+    })
+  ],
   devtool: 'source-map',
   devServer: {
     publicPath: path.join('/dist/')
