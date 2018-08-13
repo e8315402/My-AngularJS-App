@@ -3,9 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: path.join(__dirname, 'app.js'),
+  entry: {
+    app: path.join(__dirname, 'app.js'),
+    sidebar: path.join(__dirname, 'sidebar.directive.js')
+  },
   output: {
-    filename: 'main.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -19,6 +22,21 @@ module.exports = {
       query: {
         presets: ['es2015']
       }
+    },
+    {
+      test: /\.css?$/,
+      use: [
+        'style-loader',
+        'css-loader'
+      ]
+    },
+    {
+      test: /\.html?$/,
+      exclude: [
+        path.resolve(__dirname, 'node_modules'),
+        path.resolve(__dirname, 'bower_components')
+      ],
+      use: { loader: 'html-loader' }
     }
     ]
   },

@@ -1,3 +1,5 @@
+import sidebarTemplate from "./sidebar.template.html";
+
 export default (myAngularJSApp) => {
     'use strict';
 
@@ -25,8 +27,7 @@ export default (myAngularJSApp) => {
             controller: sidebarController,
             controllerAs: 'Ctrl',
             link: link,
-            // templateUrl: 'sidebar.template.html',
-            template: '<p>sidebar</p>',
+            template: sidebarTemplate,
             restrict: 'AE',
             scope: {},
         }
