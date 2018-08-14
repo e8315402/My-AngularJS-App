@@ -6,7 +6,7 @@ module.exports = {
   mode: 'development',
   entry: {
     app: path.join(__dirname, 'app.js'),
-    sidebar: path.join(__dirname, 'sidebar.directive.js')
+    sideNav: path.join(__dirname, 'src', 'components', 'sideNav.component.js')
   },
   output: {
     filename: '[name].js',
