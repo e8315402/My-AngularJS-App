@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const webpack = require('webpack');
 
 module.exports = {
   mode: 'development',
@@ -10,7 +11,8 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
   module: {
     rules: [{
@@ -49,10 +51,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'My AngularJS App',
       template: 'index.template.html'
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   devtool: 'source-map',
   devServer: {
-    publicPath: path.join('/dist/')
+    contentBase: path.join('./dist'),
+    hot: true
   }
 };
