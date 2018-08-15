@@ -1,5 +1,5 @@
 import sideNavTemplate from "./sideNav.template.html";
-import "./sideNav.css";
+import "./sidenav-options.css";
 
 (function () {
     'use strict';
