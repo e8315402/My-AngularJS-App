@@ -1,8 +1,6 @@
 import angular from "angular";
 import './index.css';
 
-import printMe from "./otherModule.js";
-
 (function () {
     'use strict';
 
@@ -12,10 +10,7 @@ import printMe from "./otherModule.js";
         ]);
 
     if (module.hot) {
-        module.hot.accept('./otherModule.js', function () {
-            console.log('Accepting the printMe module!');
-            printMe();
-        })
+        module.hot.accept();
     }
 
 }());

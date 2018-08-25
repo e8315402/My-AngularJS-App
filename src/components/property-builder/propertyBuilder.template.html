@@ -1,0 +1,16 @@
+<form novalidate>
+  <fieldset>
+    <legend>Create a new property</legend>
+    <label for="pName">Name:</label>
+    <br>
+    <input id="pName" name="pName" type="text" ng-model="$ctrl.prop.name">
+    <br>
+    <label for="pPrice">Price:</label>
+    <br>
+    <input id="pPrice" type="number" name="pPrice" min="0" ng-model="$ctrl.prop.price">
+    <br>
+    <input type="submit" value="Save" ng-click="$ctrl.save($ctrl.prop)">
+  </fieldset>
+</form>
+
+<pre>{{$ctrl.property | json}}</pre>

@@ -7,7 +7,8 @@ module.exports = {
   mode: 'development',
   entry: {
     app: path.join(__dirname, 'app.js'),
-    sideNav: path.join(__dirname, 'src', 'components', 'sideNav.component.js')
+    sidenav: path.join(__dirname, 'src', 'components', 'sidenav.component.js'),
+    propertyBuilder: path.join(__dirname, 'src', 'components', 'property-builder', 'propertyBuilder.component.js')
   },
   output: {
     filename: '[name].js',
