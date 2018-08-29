@@ -4,7 +4,7 @@ import propertyBuilderTemplate from "./propertyBuilder.template.html";
     'use strict';
 
     angular
-        .module ('myAngularJSApp')
+        .module ('property')
         .component ('propertyBuilder', propertyBuilder());
 
 
@@ -19,7 +19,7 @@ import propertyBuilderTemplate from "./propertyBuilder.template.html";
                 vm.property = {}
                 vm.save = function save(prop) {
                     console.info('New property: ' + prop);
-                    vm.property = angular.copy(prop)
+                    vm.property = angular.copy(prop);
                 }
             }
         }

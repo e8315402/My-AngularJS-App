@@ -2,13 +2,13 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const webpack = require('webpack');
+const glob = require('glob');
 
 module.exports = {
   mode: 'development',
   entry: {
-    app: path.join(__dirname, 'app.js'),
-    sidenav: path.join(__dirname, 'src', 'components', 'sidenav.component.js'),
-    propertyBuilder: path.join(__dirname, 'src', 'components', 'property-builder', 'propertyBuilder.component.js')
+    modules: glob.sync("./src/**/*.module.js"),
+    components: glob.sync("./src/**/*.component.js")
   },
   output: {
     filename: '[name].js',
@@ -50,8 +50,8 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'My AngularJS App',
-      template: 'index.template.html'
+      title: 'Prop',
+      template: path.join(__dirname, 'src', 'index.template.html')
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
