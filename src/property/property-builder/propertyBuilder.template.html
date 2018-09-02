@@ -9,8 +9,6 @@
     <br>
     <input id="pPrice" type="number" name="pPrice" min="0" ng-model="$ctrl.prop.price">
     <br>
-    <input type="submit" value="Save" ng-click="$ctrl.save($ctrl.prop)">
+    <input type="submit" value="Save" ng-click="$ctrl.create($ctrl.prop)">
   </fieldset>
 </form>
-
-<pre>{{$ctrl.property | json}}</pre>

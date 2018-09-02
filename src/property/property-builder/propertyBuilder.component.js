@@ -10,17 +10,24 @@ import propertyBuilderTemplate from "./propertyBuilder.template.html";
 
     function propertyBuilder() {
 
-        function propertyBuilderController(){
+        propertyBuilderController.$inject = ['properties'];
+        
+        function propertyBuilderController(properties){
             var vm = this;
             
             init();
 
             function init(){
                 vm.property = {}
-                vm.save = function save(prop) {
-                    console.info('New property: ' + prop);
-                    vm.property = angular.copy(prop);
+
+                vm.create = function create(prop) {
+                    properties.save(prop).$promise.then(function (res) {
+                        console.info('New property: ' + res);
+                    }).catch(function (err) {
+                        console.error(err);
+                    });
                 }
+
             }
         }
 

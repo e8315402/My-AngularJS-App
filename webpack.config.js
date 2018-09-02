@@ -8,6 +8,7 @@ module.exports = {
   mode: 'development',
   entry: {
     modules: glob.sync("./src/**/*.module.js"),
+    services: glob.sync("./src/**/*.service.js"),
     components: glob.sync("./src/**/*.component.js")
   },
   output: {

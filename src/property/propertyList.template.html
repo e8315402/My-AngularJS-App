@@ -1,0 +1,10 @@
+<button ng-click="$ctrl.create()">Create</button>
+
+<div>
+  <property-builder ng-show="$ctrl.showBuilder" ></property-builder>
+  <ul>
+    <li ng-repeat="prop in $ctrl.properties">{{prop.name}}</li>
+  </ul>
+</div>
+
+<p>Show the builder {{$ctrl.showBuilder}}</p>

@@ -2,10 +2,9 @@
   z-index: 1000;
   position: fixed;
   height: 100%;
-  width: 160px;
+  width: 15%;
   top: 0;
   left: 0;
-  /* left: 250px; */
   overflow-x: hidden;
   overflow-y: auto;
   padding-top: 20px;
@@ -13,8 +12,9 @@
 }
 
 .container {
-  width: 100%;
   position: fixed;
+  left: 15%;
+  width: 85%;
+  box-sizing: border-box;
   padding: 15px;
-  left: 160px;
 }
