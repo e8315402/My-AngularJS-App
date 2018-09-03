@@ -7,9 +7,9 @@ const glob = require('glob');
 module.exports = {
   mode: 'development',
   entry: {
-    modules: glob.sync("./src/**/*.module.js"),
-    services: glob.sync("./src/**/*.service.js"),
-    components: glob.sync("./src/**/*.component.js")
+    modules: glob.sync("./client/src/**/*.module.js").concat(['webpack-hot-middleware/client?reload=true&noInfo=true']),
+    services: glob.sync("./client/src/**/*.service.js").concat(['webpack-hot-middleware/client?reload=true&noInfo=true']),
+    components: glob.sync("./client/src/**/*.component.js").concat(['webpack-hot-middleware/client?reload=true&noInfo=true'])
   },
   output: {
     filename: '[name].js',
@@ -52,7 +52,7 @@ module.exports = {
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'Prop',
-      template: path.join(__dirname, 'src', 'index.template.html')
+      template: path.join(__dirname, 'client', 'src', 'index.template.html')
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
