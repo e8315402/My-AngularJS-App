@@ -22,7 +22,8 @@ import propertyBuilderTemplate from "./propertyBuilder.template.html";
 
                 vm.create = function create(prop) {
                     properties.save(prop).$promise.then(function (res) {
-                        console.info('New property: ' + res);
+                        console.info('New property: ' + JSON.stringify(res));
+                        vm.onClose();
                     }).catch(function (err) {
                         console.error(err);
                     });
@@ -32,7 +33,9 @@ import propertyBuilderTemplate from "./propertyBuilder.template.html";
         }
 
         return {
-            bindings: {},
+            bindings: {
+                onClose: '&'
+            },
             controller: propertyBuilderController,
             template: propertyBuilderTemplate
         }

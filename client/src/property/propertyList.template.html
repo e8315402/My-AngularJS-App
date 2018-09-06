@@ -1,10 +1,8 @@
-<button ng-click="$ctrl.create()">Create</button>
+<button ng-click="$ctrl.openBuilder()">Create</button>
 
 <div>
-  <property-builder ng-show="$ctrl.showBuilder" ></property-builder>
+  <property-builder ng-show="$ctrl.isBuilderDisplay" on-close="$ctrl.closeBuilder()"></property-builder>
   <ul>
-    <li ng-repeat="prop in $ctrl.properties">{{prop.name}}</li>
+    <li ng-repeat="prop in $ctrl.propertyList">{{prop.name}}</li>
   </ul>
 </div>
-
-<p>Show the builder {{$ctrl.showBuilder}}</p>

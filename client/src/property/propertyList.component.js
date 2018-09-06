@@ -10,18 +10,27 @@ import propertyListTemplate from "./propertyList.template.html";
 
     function propertyList() {
 
-        function propertyListController() {
+        propertyListController.$inject = ['properties'];
+
+        function propertyListController(properties) {
             var vm = this;
 
             init();
 
             function init() {
-                vm.showBuilder = false;
-                vm.propertyList = [{
-                    name: 'Property one'
-                }];
-                vm.create = function () {
-                    vm.showBuilder = true;
+                vm.isBuilderDisplay = false;
+                vm.propertyList = [];
+
+                vm.openBuilder = function () {
+                    vm.isBuilderDisplay = true;
+                }
+
+                vm.closeBuilder = function () {
+                    vm.isBuilderDisplay = false;
+                    properties.query().$promise.then(function (props) {
+                        console.log('Properties :', JSON.stringify(props));
+                        vm.propertyList = props;
+                    });
                 }
             }
         }
