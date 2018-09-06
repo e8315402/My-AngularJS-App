@@ -7,9 +7,9 @@ const glob = require('glob');
 module.exports = {
   mode: 'development',
   entry: {
-    modules: glob.sync("./client/src/**/*.module.js").concat(['webpack-hot-middleware/client?reload=true&noInfo=true']),
-    services: glob.sync("./client/src/**/*.service.js").concat(['webpack-hot-middleware/client?reload=true&noInfo=true']),
-    components: glob.sync("./client/src/**/*.component.js").concat(['webpack-hot-middleware/client?reload=true&noInfo=true'])
+    modules: glob.sync("./client/src/**/*.module.js"),
+    services: glob.sync("./client/src/**/*.service.js"),
+    components: glob.sync("./client/src/**/*.component.js")
   },
   output: {
     filename: '[name].js',
@@ -58,7 +58,11 @@ module.exports = {
   ],
   devtool: 'source-map',
   devServer: {
+    port: 3000,
     contentBase: path.join('./dist'),
-    hot: true
+    hot: true,
+    proxy: {
+      "/api": "http://localhost:8080"
+    }
   }
 };

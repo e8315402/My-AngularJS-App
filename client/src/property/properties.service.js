@@ -9,7 +9,7 @@
 
     /** @ngInject */
     function properties($resource){
-        return $resource('properties');
+        return $resource('api/properties');
     }
 
 }());

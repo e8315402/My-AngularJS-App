@@ -6,8 +6,9 @@
   "scripts": {
     "build": "webpack -c webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "webpack --watch",
-    "dev": "node ./server/server.js"
+    "start:server": "nodemon ./server/index.js",
+    "start:client": "webpack-dev-server --open",
+    "start": "concurrently \"npm run start:server\" \"npm run start:client\""
   },
   "author": "e8315402",
   "license": "ISC",
