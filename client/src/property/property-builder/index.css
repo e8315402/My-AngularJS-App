@@ -1,0 +1,17 @@
+.builder-form {
+  display: inline-block;
+}
+
+.builder-form fieldset {
+  padding: 22px;
+}
+
+.builder-form input {
+  width: 160px
+}
+
+#propertyBuilderFormCloseBtn {
+  position: relative;
+  top: 2px;
+  right: 2px;
+}

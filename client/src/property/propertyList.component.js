@@ -27,11 +27,17 @@ import propertyListTemplate from "./propertyList.template.html";
 
                 vm.closeBuilder = function () {
                     vm.isBuilderDisplay = false;
+                    vm.refresh();
+                }
+
+                vm.refresh = function () {
                     properties.query().$promise.then(function (props) {
                         console.log('Properties :', JSON.stringify(props));
                         vm.propertyList = props;
                     });
                 }
+
+                vm.refresh();
             }
         }
 

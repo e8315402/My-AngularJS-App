@@ -1,14 +1,76 @@
-<form novalidate>
+<form novalidate id="propertyBuilderForm" class="builder-form">
   <fieldset>
     <legend>Create a new property</legend>
-    <label for="pName">Name:</label>
-    <br>
-    <input id="pName" name="pName" type="text" ng-model="$ctrl.prop.name">
-    <br>
-    <label for="pPrice">Price:</label>
-    <br>
-    <input id="pPrice" type="number" name="pPrice" min="0" ng-model="$ctrl.prop.price">
-    <br>
+
+    <button id="propertyBuilderFormCloseBtn" type="button">Close</button>
+
+    <p>
+        <label for="pNumber">
+          Number:
+          <input id="pNumber" name="pNumber" type="text" ng-model="$ctrl.prop.number">
+        </label>
+    </p>
+    <p>
+      <label for="pMake">
+        Make:
+        <input id="pMake" name="pMake" type="text" ng-model="$ctrl.prop.make">
+      </label>
+    </p>
+    <p>
+      <label for="pModel">
+        Model:
+        <input id="pModel" type="text" name="pModel" ng-model="$ctrl.prop.model">
+      </label>
+    </p>
+    <p>
+      <label for="pPrice">
+        Price:
+        <input id="pPrice" type="number" name="pPrice" min="0" ng-model="$ctrl.prop.price">
+      </label>
+    </p>
+    <p>
+      <label for="pPresentValue">
+        Present Value:
+        <input id="pPresentValue" type="number" name="pPresentValue" min="0" ng-model="$ctrl.prop.presentValue">
+      </label>
+    </p>
+    <p>
+      <label for="pPurchaseDate">
+        Purchase Date:
+        <input id="pPurchaseDate" type="date" name="pPurchaseDate" max="{{$ctrl.maxPurchaseDate}}" ng-model="$ctrl.prop.purchaseDate">
+      </label>
+    </p>
+    <p>
+      <label for="pYears">
+        Years:
+        <input id="pYears" type="number" name="pYears" min="0" max="99" ng-model="$ctrl.prop.years">
+      </label>
+    </p>
+    <p>
+      <label for="pCustodian">
+        Custodian:
+        <input id="pCustodian" type="text" name="pCustodian" ng-model="$ctrl.prop.custodian">
+      </label>
+    </p>
+    <p>
+      <label for="pUser">
+        User:
+        <input id="pUser" type="text" name="pUser" ng-model="$ctrl.prop.user">
+      </label>
+    </p>
+    <p>
+      <label for="pLocation">
+        Location:
+        <input id="pLocation" type="text" name="pLocation" ng-model="$ctrl.prop.location">
+      </label>
+    </p>
+    <p>
+      <label for="pPlacement">
+        Placement:
+        <input id="pPlacement" type="text" name="pPlacement" ng-model="$ctrl.prop.placement">
+      </label>
+    </p>
+
     <input type="submit" value="Save" ng-click="$ctrl.create($ctrl.prop)">
   </fieldset>
 </form>

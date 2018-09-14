@@ -3,6 +3,7 @@
 <div>
   <property-builder ng-show="$ctrl.isBuilderDisplay" on-close="$ctrl.closeBuilder()"></property-builder>
   <ul>
-    <li ng-repeat="prop in $ctrl.propertyList">{{prop.name}}</li>
+    <li ng-repeat="prop in $ctrl.propertyList">{{prop | json}}</li>
   </ul>
+  <div ui-grid="{data: $ctrl.propertyList}"></div>
 </div>

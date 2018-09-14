@@ -17,32 +17,37 @@ module.exports = {
     publicPath: '/'
   },
   module: {
-    rules: [{
-      test: /.js?$/,
-      exclude: [
-        path.resolve(__dirname, 'node_modules'),
-        path.resolve(__dirname, 'bower_components')
-      ],
-      loader: 'babel-loader',
-      query: {
-        presets: ['env']
+    rules: [
+      {
+        test: /.js?$/,
+        exclude: [
+          path.resolve(__dirname, 'node_modules'),
+          path.resolve(__dirname, 'bower_components')
+        ],
+        loader: 'babel-loader',
+        query: {
+          presets: ['env']
+        }
+      },
+      {
+        test: /\.css?$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      },
+      {
+        test: /\.html?$/,
+        exclude: [
+          path.resolve(__dirname, 'node_modules'),
+          path.resolve(__dirname, 'bower_components')
+        ],
+        use: { loader: 'html-loader' }
+      },
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader?limit=100000'
       }
-    },
-    {
-      test: /\.css?$/,
-      use: [
-        'style-loader',
-        'css-loader'
-      ]
-    },
-    {
-      test: /\.html?$/,
-      exclude: [
-        path.resolve(__dirname, 'node_modules'),
-        path.resolve(__dirname, 'bower_components')
-      ],
-      use: { loader: 'html-loader' }
-    }
     ]
   },
   resolve: {

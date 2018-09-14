@@ -1,11 +1,15 @@
 import 'angular-resource';
+import 'angular-ui-grid';
+import 'angular-ui-grid/ui-grid.min.css';
 
 (function () {
     'use strict';
 
     angular
         .module('property', [
-            'ngResource'
+            'ngResource',
+            'ui.grid',
+            'ui.grid.autoResize'
         ]);
 
 }());

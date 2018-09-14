@@ -1,4 +1,5 @@
 import propertyBuilderTemplate from "./propertyBuilder.template.html";
+import './index.css';
 
 (function () {
     'use strict';
@@ -19,6 +20,8 @@ import propertyBuilderTemplate from "./propertyBuilder.template.html";
 
             function init(){
                 vm.property = {}
+
+                vm.maxPurchaseDate = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
 
                 vm.create = function create(prop) {
                     properties.save(prop).$promise.then(function (res) {
