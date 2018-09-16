@@ -1,20 +1,27 @@
-.side-nav {
-  z-index: 1000;
-  position: fixed;
+html, body {
+  margin: 0px;
   height: 100%;
-  width: 200px;
-  top: 0;
-  left: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding-top: 20px;
-  background-color: #111;
 }
 
 .container {
-  position: fixed;
-  left: 200px;
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 100%;
+}
+
+.navbar {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 200px;
+  align-self: stretch;
+  border-right: 2px solid #c1c1c1;
+  /* border: 3px solid #ff8000; */
+}
+
+.content {
+  flex-grow: 3;
+  align-self: flex-start;
   padding: 15px;
-  border: 3px solid #73AD21;;
+  /* border: 3px solid #73AD21; */
 }
