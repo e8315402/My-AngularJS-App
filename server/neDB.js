@@ -6,7 +6,11 @@ export default class NeDB {
 
   constructor () {
     if (instance) return instance;
-    instance = new Datastore();
+    var config = {
+      filename: './FakeData/properties.db',
+      autoload: true
+    }
+    instance = new Datastore(config);
     return instance;
   }
 };

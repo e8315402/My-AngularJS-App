@@ -15,30 +15,43 @@ import propertyListTemplate from "./propertyList.template.html";
         function propertyListController(properties) {
             var vm = this;
 
-            init();
-
             function init() {
-                vm.isBuilderDisplay = false;
-                vm.propertyList = [];
-
-                vm.openBuilder = function () {
-                    vm.isBuilderDisplay = true;
-                }
-
-                vm.closeBuilder = function () {
-                    vm.isBuilderDisplay = false;
-                    vm.refresh();
-                }
-
-                vm.refresh = function () {
-                    properties.query().$promise.then(function (props) {
-                        console.log('Properties :', JSON.stringify(props));
-                        vm.propertyList = props;
-                    });
-                }
-
-                vm.refresh();
+                vm.getProperties();
             }
+
+            vm.isBuilderDisplay = false;
+            
+            vm.propertyList = [];
+            
+            vm.uiGridOptions = {
+                data: '$ctrl.propertyList'
+            };
+
+            vm.openBuilder = function () {
+                vm.isBuilderDisplay = true;
+            }
+
+            vm.closeBuilder = function () {
+                vm.isBuilderDisplay = false;
+                vm.getProperties();
+            }
+
+            vm.getProperties = function () {
+                properties.query().$promise.then(function (props) {
+                    console.log('Properties :', JSON.stringify(props));
+                    vm.propertyList = props;
+                });
+            }
+
+            // vm.$onChanges = function (changesObj) {
+            //     console.log('changesObj :', changesObj);
+            // }
+
+            // vm.$doCheck = function () {
+            //     console.info('Digest process~');
+            // }
+
+            init();
         }
 
         return {
