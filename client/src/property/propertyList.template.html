@@ -2,5 +2,6 @@
 
 <div>
   <property-builder ng-show="$ctrl.isBuilderDisplay" on-close="$ctrl.closeBuilder()"></property-builder>
-  <div ui-grid="$ctrl.uiGridOptions"></div>
+  <hr>
+  <div class="property-list" ui-grid="$ctrl.uiGridOptions" ui-grid-selection></div>
 </div>

@@ -28,6 +28,7 @@ import propertyListTemplate from "./propertyList.template.html";
             };
 
             vm.openBuilder = function () {
+                if (vm.isBuilderDisplay) return;
                 vm.isBuilderDisplay = true;
             }
 
