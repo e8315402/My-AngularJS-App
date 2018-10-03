@@ -10,7 +10,11 @@ export default class Property {
   }
 
   query(predicate, cb) {
-    this.neDB.find(predicate, cb)
+    this.neDB.find(predicate, cb);
+  }
+
+  remove(predicate, cb) {
+    this.neDB.remove(predicate, cb);
   }
 };
 

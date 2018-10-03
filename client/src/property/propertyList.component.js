@@ -7,12 +7,11 @@ import propertyListTemplate from "./propertyList.template.html";
         .module('property')
         .component('propertyList', propertyList());
 
-
     function propertyList() {
 
-        propertyListController.$inject = ['properties'];
+        propertyListController.$inject = ['$scope', 'properties'];
 
-        function propertyListController(properties) {
+        function propertyListController($scope, properties) {
             var vm = this;
 
             function init() {
@@ -24,24 +23,50 @@ import propertyListTemplate from "./propertyList.template.html";
             vm.propertyList = [];
             
             vm.uiGridOptions = {
-                data: '$ctrl.propertyList'
+                data: '$ctrl.propertyList',
+                enableFullRowSelection: true,
+                enableRowSelection: true,
+                // enableSelectAll: true,
+                multiSelect: false,
+                onRegisterApi: function (gridApi) {
+                    gridApi.selection.on.rowSelectionChanged($scope, vm.onSelect);
+                }
             };
 
-            vm.openBuilder = function () {
+            vm.createProperty = function () {
                 if (vm.isBuilderDisplay) return;
                 vm.isBuilderDisplay = true;
             }
 
-            vm.closeBuilder = function () {
+            vm.closeCreatingPanel = function () {
                 vm.isBuilderDisplay = false;
                 vm.getProperties();
             }
 
             vm.getProperties = function () {
                 properties.query().$promise.then(function (props) {
-                    console.log('Properties :', JSON.stringify(props));
+                    console.info('Properties :', JSON.stringify(props));
                     vm.propertyList = props;
                 });
+            }
+
+            vm.anyRowSelected = false;
+
+            vm.editProperty = function (prop) {
+                console.info(`Edit property: ${prop}`);
+            }
+            
+            vm.deleteProperty = function () {
+                properties.delete({number: vm.currentRow.entity.number}).$promise.then(function (res) {
+                    console.info(`Delete property: ${res}`);
+                    vm.getProperties();
+                });
+            }
+
+            vm.onSelect = function (row) {
+                console.info('Row changed: ', row);
+                vm.anyRowSelected = row.isSelected;
+                vm.currentRow = row.isSelected ? row : null;
             }
 
             // vm.$onChanges = function (changesObj) {

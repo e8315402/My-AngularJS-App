@@ -29,9 +29,22 @@ app.get('/api/properties', function (req, res) {
   p.query({}, function (err, props) {
     if (err) {
       console.error(err);
-      res.status(400).send(err);
+      return res.status(err.status >= 100 && err.status < 600 ? err.code : 500).send(err);
     }
-    res.send(props);
+    return res.send(props);
+  });
+});
+
+app.delete('/api/properties', function (req, res) {
+  console.info("[DELETE] /api/properties");
+  console.info(req.query);
+  var p = new Property(db);
+  p.remove(req.query, function (err, numRemoved) {
+    if (err) {
+      console.error(err);
+      return res.status(err.status >= 100 && err.status < 600 ? err.code : 500).send(err);
+    }
+    return res.send(`${numRemoved}`);
   });
 });
 
