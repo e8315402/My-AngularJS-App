@@ -9,8 +9,7 @@ import propertyListTemplate from "./propertyList.template.html";
 
     function propertyList() {
 
-        propertyListController.$inject = ['$scope', 'properties'];
-
+        /** @ngInject */
         function propertyListController($scope, properties) {
             var vm = this;
 
@@ -50,8 +49,6 @@ import propertyListTemplate from "./propertyList.template.html";
                 });
             }
 
-            vm.anyRowSelected = false;
-
             vm.editProperty = function (prop) {
                 console.info(`Edit property: ${prop}`);
             }
@@ -65,7 +62,6 @@ import propertyListTemplate from "./propertyList.template.html";
 
             vm.onSelect = function (row) {
                 console.info('Row changed: ', row);
-                vm.anyRowSelected = row.isSelected;
                 vm.currentRow = row.isSelected ? row : null;
             }
 

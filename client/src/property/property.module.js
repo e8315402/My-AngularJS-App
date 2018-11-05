@@ -10,7 +10,9 @@ import 'angular-ui-grid/ui-grid.min.css';
             'ngResource',
             'ui.grid',
             'ui.grid.autoResize',
-            'ui.grid.selection'
+            'ui.grid.selection',
+            'component',
+            'utils'
         ]);
 
 }());

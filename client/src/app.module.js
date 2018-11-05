@@ -6,7 +6,9 @@ import './index.css';
 
     angular
         .module('myAngularJSApp', [
-            'property'
+            'property',
+            'component',
+            'utils'
         ]);
 
     if (module.hot) {
