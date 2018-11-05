@@ -11,8 +11,7 @@ import './index.css';
 
     function propertyBuilder() {
 
-        propertyBuilderController.$inject = ['properties'];
-        
+        /** @ngInject */
         function propertyBuilderController(properties){
             var vm = this;
             
