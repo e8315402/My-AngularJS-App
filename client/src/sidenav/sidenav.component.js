@@ -5,7 +5,7 @@ import './sidenav.css';
     'use strict';
 
     angular
-        .module('myAngularJSApp')
+        .module('warehouse')
         .component('sideNav', sideNav());
 
 

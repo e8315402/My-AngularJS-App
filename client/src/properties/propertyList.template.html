@@ -1,0 +1,14 @@
+<button ng-click="$ctrl.createProperty()">Create</button>
+<button ng-click="$ctrl.editProperty()" ng-disabled="!$ctrl.selectedProp">Edit</button>
+<button ng-click="$ctrl.deleteProperty()" ng-disabled="!$ctrl.selectedProp">Delete</button>
+
+<my-property data="$ctrl.prop"></my-property>
+
+<div>
+  <property-builder ng-show="$ctrl.isBuilderDisplay" on-close="$ctrl.closeCreatingPanel()"></property-builder>
+  <hr>
+  <div class="property-list" 
+       ui-grid="$ctrl.uiGridOptions" 
+       ui-grid-selection
+  ></div>
+</div>

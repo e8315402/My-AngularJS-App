@@ -5,7 +5,7 @@ import './index.css';
     'use strict';
 
     angular
-        .module('myAngularJSApp', [
+        .module('warehouse', [
             'property',
             'component',
             'utils'

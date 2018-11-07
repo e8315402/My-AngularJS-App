@@ -1,0 +1,11 @@
+.property-list {
+  height: 100%;
+}
+
+.mono-cols {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-row-gap: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

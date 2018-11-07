@@ -18,9 +18,10 @@ import propertyListTemplate from "./propertyList.template.html";
             }
 
             vm.isBuilderDisplay = false;
-            
+
             vm.propertyList = [];
-            
+            vm.selectedProp = null;
+
             vm.uiGridOptions = {
                 data: '$ctrl.propertyList',
                 enableFullRowSelection: true,
@@ -52,17 +53,16 @@ import propertyListTemplate from "./propertyList.template.html";
             vm.editProperty = function (prop) {
                 console.info(`Edit property: ${prop}`);
             }
-            
+
             vm.deleteProperty = function () {
-                properties.delete({number: vm.currentRow.entity.number}).$promise.then(function (res) {
+                properties.delete({ number: vm.selectedProp.entity.number }).$promise.then(function (res) {
                     console.info(`Delete property: ${res}`);
                     vm.getProperties();
                 });
             }
 
             vm.onSelect = function (row) {
-                console.info('Row changed: ', row);
-                vm.currentRow = row.isSelected ? row : null;
+                vm.selectedProp = row.isSelected ? row : null;
             }
 
             // vm.$onChanges = function (changesObj) {
