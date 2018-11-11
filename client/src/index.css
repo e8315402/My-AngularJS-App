@@ -6,22 +6,19 @@ html, body {
 .container {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  align-items: stretch;
   height: 100%;
 }
 
 .navbar {
-  flex-grow: 0;
-  flex-shrink: 0;
+  max-width: 200px;
   flex-basis: 200px;
-  align-self: stretch;
+  flex-shrink: 10;
   border-right: 2px solid #c1c1c1;
-  /* border: 3px solid #ff8000; */
 }
 
 .content {
-  flex-grow: 3;
-  align-self: flex-start;
+  flex-grow: 10;
+  flex-shrink: 1;
   padding: 15px;
-  /* border: 3px solid #73AD21; */
 }

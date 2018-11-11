@@ -1,4 +1,6 @@
 import angular from "angular";
+import 'angular-resizable/angular-resizable.min.js';
+import 'angular-resizable/angular-resizable.min.css';
 import './index.css';
 
 (function () {
@@ -8,7 +10,8 @@ import './index.css';
         .module('warehouse', [
             'property',
             'component',
-            'utils'
+            'utils',
+            'angularResizable'
         ]);
 
     if (module.hot) {
