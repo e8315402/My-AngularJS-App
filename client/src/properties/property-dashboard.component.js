@@ -15,9 +15,9 @@ import './index.css';
         function propertyDashboardController($scope, properties, uiGridConstants){
             var vm = this;
 
-            vm.isBuilderDisplay = false;
             vm.properties = [];
             vm.selectedProp = null;
+            vm.callTheWaiter = false;
 
             vm.uiGridOptions = {
                 data: '$ctrl.properties',
@@ -34,7 +34,7 @@ import './index.css';
             };
 
             vm.createProperty = function () {
-                vm.isBuilderDisplay = true;
+                vm.callTheWaiter = true;
             }
 
             vm.editProperty = function (prop) {
@@ -57,6 +57,10 @@ import './index.css';
 
             vm.onSelect = function (row) {
                 vm.selectedProp = row.isSelected ? row.entity : null;
+            }
+
+            vm.okThankYou = function () {
+                vm.callTheWaiter = false;
             }
 
             init();

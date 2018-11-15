@@ -5,10 +5,10 @@
     <button ng-click="$ctrl.deleteProperty()" ng-disabled="!$ctrl.selectedProp">Delete</button>
     <button ng-click="$ctrl.getProperties()">Refresh</button>
   </div>
-  <!-- <property-waiter property="$ctrl.selectedProp"></property-waiter> -->
-  <!-- <property-builder ng-show="$ctrl.isBuilderDisplay" on-close="$ctrl.closeCreatingPanel()"></property-builder> -->
   <hr>
   <div class="pd-content">
     <div id="propertyList" ui-grid="$ctrl.uiGridOptions" ui-grid-selection ui-grid-auto-resize></div>
   </div>
+  <property-waiter property="$ctrl.selectedProp" is-leaving="$ctrl.okThankYou()" ng-show="$ctrl.callTheWaiter"></property-waiter>
 </div>
+

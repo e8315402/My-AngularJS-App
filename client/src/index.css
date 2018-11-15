@@ -1,6 +1,7 @@
 html, body {
   margin: 0px;
   height: 100%;
+  font-family: 'Nunito', sans-serif;
 }
 
 .container {
@@ -21,4 +22,5 @@ html, body {
   flex-grow: 10;
   flex-shrink: 1;
   padding: 15px;
+  position: relative;
 }

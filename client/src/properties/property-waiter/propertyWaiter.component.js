@@ -2,36 +2,42 @@ import template from './propertyWaiter.template.html';
 import './propertyWaiter.css';
 
 (function () {
-    'use strict';
+  'use strict';
 
-    angular
-        .module ('property')
-        .component ('propertyWaiter', propertyWaiter());
+  angular
+    .module('property')
+    .component('propertyWaiter', propertyWaiter());
 
 
-    function propertyWaiter() {
+  function propertyWaiter() {
 
-        function propertyWaiterController($scope){
-            var vm = this;
-            
-            init();
+    function propertyWaiterController($scope) {
+      var vm = this;
 
-            function init(){
-                
-            }
+      init();
 
-            vm.$onChanges = function () {
-                console.info('changed');
-            }
-        }
+      function init() {
+        
+      }
 
-        return {
-            bindings: {
-                property: '<'
-            },
-            controller: propertyWaiterController,
-            template: template
-        }
+      vm.$onChanges = function () {
+        console.info('changed');
+      }
+
+      $scope.close = function () {
+        vm.onClose();
+      }
+
     }
 
-} ());
+    return {
+      bindings: {
+        property: '<',
+        onClose: '&isLeaving'
+      },
+      controller: propertyWaiterController,
+      template: template
+    }
+  }
+
+}());
