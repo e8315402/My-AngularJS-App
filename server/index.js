@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 
 import neDB from './neDB';
 import Property from './modal/Property';
+import { toQueryString, isEmpty } from './Utils';
 
 const db = new neDB();
 
@@ -24,9 +25,9 @@ app.post('/api/properties', function (req, res) {
 });
 
 app.get('/api/properties', function (req, res) {
-  console.info("[GET] /api/properties");
+  console.info("[GET] /api/properties" + (!isEmpty(req.query) ? toQueryString(req.query) : ''));
   var p = new Property(db);
-  p.query({}, function (err, props) {
+  p.query(req.query, function (err, props) {
     if (err) {
       console.error(err);
       return res.status(err.status >= 100 && err.status < 600 ? err.code : 500).send(err);

@@ -11,28 +11,32 @@ import './propertyWaiter.css';
 
   function propertyWaiter() {
 
-    function propertyWaiterController($scope) {
+    function propertyWaiterController($scope, properties) {
       var vm = this;
 
       init();
 
       function init() {
-        
-      }
-
-      vm.$onChanges = function () {
-        console.info('changed');
+        $scope.property = {};
       }
 
       $scope.close = function () {
         vm.onClose();
       }
 
+      $scope.create = function () {
+        console.log('property :', $scope.property);
+        properties.save($scope.property).$promise.then(function (result) {
+          console.log('New property has been created :', result);
+          vm.onClose();
+        });
+      }
+
     }
 
     return {
       bindings: {
-        property: '<',
+        // property: '<',
         onClose: '&isLeaving'
       },
       controller: propertyWaiterController,

@@ -42,3 +42,12 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+
+.submit-button, .cancel-button {
+  float: right;
+  margin-left: 5px;
+}
