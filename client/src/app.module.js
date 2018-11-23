@@ -1,21 +1,24 @@
 import angular from "angular";
-import 'angular-resizable/angular-resizable.min.js';
-import 'angular-resizable/angular-resizable.min.css';
 import './index.css';
+import favicon from './asserts/img/favicon.png';
 
 (function () {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('warehouse', [
-            'property',
-            'component',
-            'utils',
-            'angularResizable'
-        ]);
+  angular
+    .module('warehouse', [
+      'property',
+      'component',
+      'utils'
+    ])
+    .controller('warehouseCtrl', warehouseCtrl);
 
-    if (module.hot) {
-        module.hot.accept();
-    }
+  function warehouseCtrl($scope) {
+    $scope.favicon = favicon;
+  }
+
+  if (module.hot) {
+    module.hot.accept();
+  }
 
 }());
