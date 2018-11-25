@@ -1,65 +1,69 @@
-<div style="position: absolute; top:0; right:0;">
-  <p>$pristine: {{propertyWaiter.$pristine}}</p>
-  <p>$dirty: {{propertyWaiter.$dirty}}</p>
-  <p>$valid: {{propertyWaiter.$valid}}</p>
-  <p>$invalid: {{propertyWaiter.$invalid}}</p>
-  <p>$submitted: {{propertyWaiter.$submitted}}</p>
-</div>
 <div>
-  <div class="modal-overlay" ng-click="close()"></div>
+  <div class="modal-overlay" ng-click="waiterVM.close()"></div>
   <div class="modal">
     <div class="modal-panel">
       <div class="modal-content">
-        <form novalidate id="propertyWaiter" name="propertyWaiter" class="propertyWaiter">
+        <form id="waiterForm" novalidate name="waiterForm" class="propertyWaiter">
           <fieldset>
             <legend>Property</legend>
             <div class="mono-cols">
-                <label for="number">Number:</label>
-                <input id="number" type="text" name="number"  
-                       ng-model="property.number" 
-                       ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"
-                       required unique-number>
-                
-                <label for="makeAndModel">Make and Model:</label>
-                <input id="makeAndModel" name="makeAndModel" type="text" ng-model="property.makeAndModel" required>
+              <label for="number">Number:</label>
+              <input id="number" type="text" required name="number" 
+                     ng-model="waiterVM.property.number" 
+                     ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"
+                     unique-number>
 
-                <label for="type">Type:</label>
-                <input id="type" name="type" type="text" ng-model="property.type" type="text" required>
-                
-                <label for="cost">Cost:</label>
-                <input id="cost" type="number" name="cost" min="0" ng-model="property.cost" required>
-                
-                <label for="presentValue">Present Value:</label>
-                <input id="presentValue" type="number" name="presentValue" min="0" ng-model="property.presentValue" disabled>
-                
-                <label for="purchaseDate">Purchase Date:</label>
-                <input id="purchaseDate" type="date" name="purchaseDate" ng-model="property.purchaseDate" date-transformer required>
-                
-                <label for="ageLimit">Age Limit:</label>
-                <input id="ageLimit" type="number" name="ageLimit" min="0" max="99" ng-model="property.ageLimit">
-                
-                <label for="custodian">Custodian:</label>
-                <input id="custodian" type="text" name="custodian" ng-model="property.custodian" required>
-                
-                <label for="user">User:</label>
-                <input id="user" type="text" name="user" ng-model="property.user">
-                
-                <label for="location">Location:</label>
-                <input id="location" type="text" name="location" ng-model="property.location" required>
-                
-                <label for="placement">Placement:</label>
-                <input id="placement" type="text" name="placement" ng-model="property.placement">
+              <label for="makeAndModel">Make and Model:</label>
+              <input id="makeAndModel" type="text" required name="makeAndModel" 
+                     ng-model="waiterVM.property.makeAndModel">
+
+              <label for="type">Type:</label>
+              <input id="type" type="text" required name="type"
+                     ng-model="waiterVM.property.type" type="text">
+
+              <label for="cost">Cost:</label>
+              <input id="cost" type="number" required name="cost" min="0" 
+                     ng-model="waiterVM.property.cost">
+
+              <label for="presentValue">Present Value:</label>
+              <input id="presentValue" type="number" name="presentValue" min="0" 
+                     ng-model="waiterVM.property.presentValue" disabled>
+
+              <label for="purchaseDate">Purchase Date:</label>
+              <input id="purchaseDate" type="date" required name="purchaseDate" 
+                     ng-model="waiterVM.property.purchaseDate"
+                     date-transformer>
+
+              <label for="ageLimit">Age Limit:</label>
+              <input id="ageLimit" type="number" name="ageLimit" min="0" max="99" 
+                     ng-model="waiterVM.property.ageLimit">
+
+              <label for="custodian">Custodian:</label>
+              <input id="custodian" type="text" required name="custodian" 
+                     ng-model="waiterVM.property.custodian">
+
+              <label for="user">User:</label>
+              <input id="user" type="text" name="user" 
+                     ng-model="waiterVM.property.user">
+
+              <label for="location">Location:</label>
+              <input id="location" type="text" required name="location" 
+                     ng-model="waiterVM.property.location">
+
+              <label for="placement">Placement:</label>
+              <input id="placement" type="text" name="placement" 
+                     ng-model="waiterVM.property.placement">
             </div>
           </fieldset>
           <hr>
-          <button id="cancelButton" class="cancel-button" type="reset" ng-click="close()">Cancel</button>
-          <button id="submitButton" class="submit-button" type="submit"
-                  ng-disabled="!(propertyWaiter.$dirty && propertyWaiter.$valid)"
-                  ng-click="create()">
+          <button id="formCancel" type="reset" class="cancel-button" ng-click="waiterVM.close()">Cancel</button>
+          <button id="formSubmit" type="submit" class="submit-button" 
+                  ng-disabled="!(waiterForm.$dirty && waiterForm.$valid)"
+                  ng-click="waiterVM.create()">
             Create
           </button>
         </form>
       </div>
     </div>
-  </div>  
+  </div>
 </div>

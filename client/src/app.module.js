@@ -11,9 +11,10 @@ import favicon from './asserts/img/favicon.png';
       'component',
       'utils'
     ])
-    .controller('warehouseCtrl', warehouseCtrl);
+    .controller('warehouseController', warehouseController);
 
-  function warehouseCtrl($scope) {
+  /** @ngInject */
+  function warehouseController($scope) {
     $scope.favicon = favicon;
   }
 

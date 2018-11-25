@@ -1,12 +1,12 @@
-(function(){
+(function () {
     'use strict';
 
     angular
         .module('property')
-        .service('properties', properties)
+        .factory('properties', properties)
 
     /** @ngInject */
-    function properties($resource){
+    function properties($resource) {
         return $resource('api/properties');
     }
 

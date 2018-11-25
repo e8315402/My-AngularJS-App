@@ -1,14 +1,13 @@
 <div id="propertyDashboard" class="dashboard">
   <div id="propertyToolbar" class="pd-toolbar">
-    <button ng-click="$ctrl.createProperty()">Create</button>
-    <button ng-click="$ctrl.editProperty()" ng-disabled="!$ctrl.selectedProp">Edit</button>
-    <button ng-click="$ctrl.deleteProperty()" ng-disabled="!$ctrl.selectedProp">Delete</button>
-    <button ng-click="$ctrl.getProperties()">Refresh</button>
+    <button ng-click="dashboardVM.createProperty()">Create</button>
+    <button ng-click="dashboardVM.editProperty()" ng-disabled="!dashboardVM.selectedProp">Edit</button>
+    <button ng-click="dashboardVM.deleteProperty()" ng-disabled="!dashboardVM.selectedProp">Delete</button>
+    <button ng-click="dashboardVM.getProperties()">Refresh</button>
   </div>
   <hr>
   <div class="pd-content">
-    <div id="propertyList" ui-grid="$ctrl.uiGridOptions" ui-grid-selection ui-grid-auto-resize></div>
+    <div id="propertyList" ui-grid="dashboardVM.uiGridOptions" ui-grid-selection ui-grid-auto-resize></div>
   </div>
-  <property-waiter property="$ctrl.selectedProp" is-leaving="$ctrl.okThankYou()" ng-show="$ctrl.callTheWaiter"></property-waiter>
+  <property-waiter property="dashboardVM.selectedProp" is-leaving="dashboardVM.okThankYou()" ng-show="dashboardVM.callTheWaiter"></property-waiter>
 </div>
-

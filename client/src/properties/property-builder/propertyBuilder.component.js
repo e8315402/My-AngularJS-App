@@ -5,19 +5,19 @@ import './index.css';
     'use strict';
 
     angular
-        .module ('property')
-        .component ('propertyBuilder', propertyBuilder());
+        .module('property')
+        .component('propertyBuilder', propertyBuilder());
 
 
     function propertyBuilder() {
 
         /** @ngInject */
-        function propertyBuilderController(properties){
+        function propertyBuilderController(properties) {
             var vm = this;
-            
+
             init();
 
-            function init(){
+            function init() {
                 vm.property = {}
 
                 vm.maxPurchaseDate = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
@@ -43,4 +43,4 @@ import './index.css';
         }
     }
 
-} ());
+}());
