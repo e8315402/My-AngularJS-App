@@ -28,7 +28,7 @@ import './propertyWaiter.css';
       }
 
       function create() {
-        properties.save(vm.property).$promise.then(function (result) {
+        properties.do.save(vm.property).$promise.then(function (result) {
           console.log('New property has been created :', result);
           vm.onClose();
         });

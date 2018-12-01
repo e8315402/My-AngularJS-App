@@ -59,14 +59,14 @@ import './index.css';
       }
 
       function deleteProperty() {
-        properties.delete({ number: vm.selectedProp.number }).$promise.then(function (res) {
+        properties.do.delete({ number: vm.selectedProp.number }).$promise.then(function (res) {
           console.info(`Delete property: ${res}`);
           vm.getProperties();
         });
       }
 
       function getProperties() {
-        return properties.query().$promise.then(function (props) {
+        return properties.do.query().$promise.then(function (props) {
           vm.properties = props;
           return props;
         });

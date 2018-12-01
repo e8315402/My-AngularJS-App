@@ -10,7 +10,8 @@ module.exports = {
     modules: glob.sync("./src/**/*.module.js"),
     services: glob.sync("./src/**/*.service.js"),
     directives: glob.sync('./src/**/*.directive.js'),
-    components: glob.sync("./src/**/*.component.js")
+    components: glob.sync("./src/**/*.component.js"),
+    specs: glob.sync('./src/**/*.spec.js')
   },
   output: {
     filename: '[name].js',

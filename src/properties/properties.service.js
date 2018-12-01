@@ -7,7 +7,7 @@
 
     /** @ngInject */
     function properties($resource) {
-        return $resource('api/properties');
+        return { do: $resource('api/properties') };
     }
 
 }());
