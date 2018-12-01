@@ -7,10 +7,10 @@ const glob = require('glob');
 module.exports = {
   mode: 'development',
   entry: {
-    modules: glob.sync("./client/src/**/*.module.js"),
-    services: glob.sync("./client/src/**/*.service.js"),
-    directives: glob.sync('./client/src/**/*.directive.js'),
-    components: glob.sync("./client/src/**/*.component.js")
+    modules: glob.sync("./src/**/*.module.js"),
+    services: glob.sync("./src/**/*.service.js"),
+    directives: glob.sync('./src/**/*.directive.js'),
+    components: glob.sync("./src/**/*.component.js")
   },
   output: {
     filename: '[name].js',
@@ -58,7 +58,7 @@ module.exports = {
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'Prop',
-      template: path.join(__dirname, 'client', 'src', 'index.template.html')
+      template: path.join(__dirname, 'src', 'index.template.html')
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
