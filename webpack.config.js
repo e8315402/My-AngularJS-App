@@ -10,8 +10,7 @@ module.exports = {
     modules: glob.sync("./src/**/*.module.js"),
     services: glob.sync("./src/**/*.service.js"),
     directives: glob.sync('./src/**/*.directive.js'),
-    components: glob.sync("./src/**/*.component.js"),
-    specs: glob.sync('./src/**/*.spec.js')
+    components: glob.sync("./src/**/*.component.js")
   },
   output: {
     filename: '[name].js',
@@ -63,7 +62,7 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
-  devtool: 'source-map',
+  // devtool: 'source-map',
   devServer: {
     port: 3000,
     contentBase: path.join('./dist'),

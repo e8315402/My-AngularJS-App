@@ -2,7 +2,6 @@ describe('propertiesService', () => {
 
   var mock, properties;
 
-  beforeEach(module('warehouse'));
   beforeEach(module('property'));
 
   beforeEach(() => {
