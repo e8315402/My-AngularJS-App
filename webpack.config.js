@@ -7,10 +7,10 @@ const glob = require('glob');
 module.exports = {
   mode: 'development',
   entry: {
-    modules: glob.sync("./src/**/*.module.js"),
-    services: glob.sync("./src/**/*.service.js"),
-    directives: glob.sync('./src/**/*.directive.js'),
-    components: glob.sync("./src/**/*.component.js")
+    modules: glob.sync("./src/app/**/*.module.js"),
+    services: glob.sync("./src/app/**/*.service.js"),
+    directives: glob.sync('./src/app/**/*.directive.js'),
+    components: glob.sync("./src/app/**/*.component.js")
   },
   output: {
     filename: '[name].js',
@@ -57,18 +57,31 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Prop',
-      template: path.join(__dirname, 'src', 'index.template.html')
+      title: 'Warehouse',
+      template: path.join(__dirname, 'src', 'app', 'index.template.html'),
+      favicon: path.join(__dirname, 'src', 'asserts', 'img', 'favicon.png')
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'login.html',
+      title: 'Warehouse Login',
+      inject: false,
+      template: path.join(__dirname, 'src', 'login.html'),
+      favicon: path.join(__dirname, 'src', 'asserts', 'img', 'favicon.png')
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
   // devtool: 'source-map',
   devServer: {
     port: 3000,
-    contentBase: path.join('./dist'),
+    open: true,
+    contentBase: path.join(__dirname, 'dist'),
     hot: true,
+    noInfo: true,
+    overlay: true,
+    writeToDisk: true,
     proxy: {
-      "/api": "http://localhost:8080"
-    }
+      "/": "http://localhost:8080"
+    },
+    openPage: 'login'
   }
 };

@@ -1,0 +1,26 @@
+html, body {
+  margin: 0px;
+  height: 100%;
+  font-family: 'Nunito', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 100%;
+}
+
+.navbar {
+  max-width: 200px;
+  flex-basis: 200px;
+  flex-shrink: 10;
+  border-right: 2px solid #c1c1c1;
+}
+
+.content {
+  flex-grow: 10;
+  flex-shrink: 1;
+  padding: 15px;
+  position: relative;
+}

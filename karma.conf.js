@@ -21,7 +21,7 @@ module.exports = function(config) {
       './dist/services.js',
       './dist/directives.js',
       './dist/components.js',
-      './src/**/*.spec.js'
+      './src/app/**/*.spec.js'
     ],
 
 

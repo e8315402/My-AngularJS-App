@@ -15,8 +15,8 @@ export default class User {
     this.neDB.insert(user, cb);
   }
 
-  query(predicate, cb) {
-    this.neDB.find(predicate, { _id: 0 }, cb);
+  findOne(predicate, cb) {
+    this.neDB.findOne(predicate, { _id: 0 }, cb);
   }
 
 }

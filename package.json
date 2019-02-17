@@ -7,7 +7,7 @@
     "build": "webpack -c webpack.config.js",
     "test": "karma start karma.conf.js",
     "start:server": "nodemon --exec babel-node ./server/index.js",
-    "start:client": "webpack-dev-server --open",
+    "start:client": "webpack-dev-server",
     "start": "concurrently \"npm run start:server\" \"npm run start:client\""
   },
   "author": "e8315402",
