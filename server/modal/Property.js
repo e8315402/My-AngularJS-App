@@ -17,4 +17,3 @@ export default class Property {
     this.neDB.remove(predicate, cb);
   }
 };
-

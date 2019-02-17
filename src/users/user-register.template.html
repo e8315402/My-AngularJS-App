@@ -1,0 +1,10 @@
+<form id="registerForm">
+  <label for="username">User Name:</label>
+  <input id="username" name="username" type="text" ng-model="registerVM.account.username">
+
+  <label for="password">Password:</label>
+  <input type="password" name="password" id="password" ng-model="registerVM.account.password">
+  <button type="submit" id="register" ng-click="registerVM.register()">Register</button>
+</form>
+
+<pre>{{ registerVM.account | json }}</pre>

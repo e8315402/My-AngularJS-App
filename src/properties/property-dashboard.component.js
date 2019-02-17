@@ -78,6 +78,7 @@ import './index.css';
 
       function okThankYou() {
         vm.callTheWaiter = false;
+        vm.getProperties();
       }
     }
 
