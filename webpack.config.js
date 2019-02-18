@@ -82,6 +82,6 @@ module.exports = {
     proxy: {
       "/": "http://localhost:8080"
     },
-    openPage: 'login'
+    openPage: 'login.html'
   }
 };

@@ -3,9 +3,10 @@
   height: calc(100% - 20px);
   padding-top: 20px;
   background-color: #d9ddec;
+  position: relative;
 }
 
-.side-nav a {
+.side-nav > a {
   padding: 6px 8px 6px 16px;
   margin-top: 10px;
   text-decoration: none;
@@ -16,4 +17,16 @@
 
 .side-nav a:hover {
   color: #444444;
+}
+
+.side-nav-bottom {
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  right: 0;
+  text-align: center;
+}
+
+.logout-link {
+  
 }

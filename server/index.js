@@ -2,6 +2,7 @@ import express from 'express';
 import session from 'express-session';
 import bodyParser from 'body-parser';
 import passport from 'passport';
+import flash from 'connect-flash';
 import { Strategy as LocalStrategy } from 'passport-local';
 
 import neDB from './neDB';
@@ -16,42 +17,33 @@ const user = new User(db);
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: 'work hard', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 passport.use(new LocalStrategy(function (username, password, done) {
   user.findOne({username: username}, function (err, foundUser) {
-    console.log('foundUser :', foundUser);
     if (err) {
-      console.info('Authentication failed.');
-      console.info(err);
       done(err);
     }
     if (!foundUser) {
-      console.info('User not found.');
-      return done(null, false);
+      return done(null, false, { message: 'Incorrect username.' });
     }
     if (foundUser.password !== password) {
-      console.info('Password is not correct.');
-      return done(null, false);
+      return done(null, false, { message: 'Incorrect password.' });
     }
-    console.info('Authentication passed.');
     return done(null, foundUser);
   });
 }));
 
 passport.serializeUser(function(foundUser, done) {
-  console.log('serializeUser - foundUser :', foundUser);
   done(null, foundUser.id);
 });
 
 passport.deserializeUser(function(id, done) {
-  user.findOne({id: id}, function(err, foundUser) {
-    console.log('deserializeUser - err :', err);
-    console.log('deserializeUser - foundUser :', foundUser);
-    done(err, foundUser);
-  });
+  user.findOne({id: id}, done);
 });
 
 app.post('/api/properties', function (req, res) {
@@ -99,16 +91,16 @@ app.post('/api/users', function (req, res) {
   })
 })
 
-app.get('/login', function (req, res) {
-  console.info("[GET] /login");
-  res.redirect('login.html');
-});
-
 app.post('/login', 
-  bodyParser.urlencoded({ extended: false }),
   passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login' })
+                                   failureRedirect: '/login.html',
+                                   failureFlash: true })
 );
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/login.html');
+});
 
 app.listen(8080, function () {
   console.log('The server is listening on 8080...');
