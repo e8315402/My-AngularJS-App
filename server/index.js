@@ -57,6 +57,17 @@ app.post('/api/properties', function (req, res) {
   });
 });
 
+app.put('/api/properties/:id', function (req, res) {
+  console.info("[PUT] /api/properties/" + req.params['id']);
+  property.edit({_id: req.params['id']}, { $set: req.body }, function (err, numReplaced) {
+    if (err) {
+      console.error(err);
+      res.status(400).send(err);
+    }
+    res.send({found: numReplaced, data: req.body});
+  });
+})
+
 app.get('/api/properties', function (req, res) {
   console.info("[GET] /api/properties" + (!isEmpty(req.query) ? toQueryString(req.query) : ''));
   property.query(req.query, function (err, props) {

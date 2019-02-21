@@ -36,6 +36,19 @@ import './index.css';
 
       function initPropertyGrid() {
         vm.uiGridOptions = {
+          columnDefs: [
+            { name: 'number', field:'number' },
+            { name: 'makeAndModel', field:'makeAndModel' },
+            { name: 'type', field:'type' },
+            { name: 'cost', field:'cost' },
+            { name: 'presentValue', field:'presentValue' },
+            { name: 'purchaseDate', field:'purchaseDate' },
+            { name: 'ageLimit', field:'ageLimit' },
+            { name: 'custodian', field:'custodian' },
+            { name: 'user', field:'user' },
+            { name: 'location', field:'location' },
+            { name: 'placement', field:'placement' }
+          ],
           data: 'dashboardVM.properties',
           minimumColumnSize: 150,
           enableHorizontalScrollbar: uiGridConstants.scrollbars.WHEN_NEEDED,
@@ -56,6 +69,7 @@ import './index.css';
 
       function editProperty(prop) {
         console.info(`Edit property: ${prop}`);
+        vm.callTheWaiter = true;
       }
 
       function deleteProperty() {

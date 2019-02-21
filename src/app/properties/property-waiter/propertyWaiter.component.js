@@ -16,6 +16,7 @@ import './propertyWaiter.css';
       vm.property = {};
       vm.close = close;
       vm.create = create;
+      vm.edit = edit;
 
       init();
 
@@ -34,11 +35,19 @@ import './propertyWaiter.css';
         });
       }
 
+      function edit() {
+        properties.do.edit(vm.property).$promise.then(function (result) {
+          console.log('Property has been updated :', result);
+          vm.onClose();
+        });
+      }
+
     }
 
     return {
       bindings: {
-        onClose: '&isLeaving'
+        onClose: '&isLeaving',
+        property: '<'
       },
       controller: propertyWaiterController,
       controllerAs: 'waiterVM',

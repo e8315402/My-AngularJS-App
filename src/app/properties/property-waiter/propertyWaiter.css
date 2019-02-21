@@ -47,7 +47,7 @@ input.ng-touched.ng-invalid {
   border: 1px solid red;
 }
 
-.submit-button, .cancel-button {
+.submit-button, .cancel-button, .edit-button {
   float: right;
   margin-left: 5px;
 }
