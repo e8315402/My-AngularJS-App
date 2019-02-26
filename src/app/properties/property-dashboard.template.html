@@ -4,6 +4,7 @@
     <button ng-click="dashboardVM.editProperty()" ng-disabled="!dashboardVM.selectedProp">Edit</button>
     <button ng-click="dashboardVM.deleteProperty()" ng-disabled="!dashboardVM.selectedProp">Delete</button>
     <button ng-click="dashboardVM.getProperties()">Refresh</button>
+    <div class="lds-ripple" ng-show="dashboardVM.gettingProperties"><div></div><div></div></div>
   </div>
   <hr>
   <div class="pd-content">

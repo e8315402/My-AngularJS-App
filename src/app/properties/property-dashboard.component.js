@@ -15,6 +15,7 @@ import './index.css';
     function propertyDashboardController($scope, properties, uiGridConstants) {
       var vm = this;
       vm.properties = [];
+      vm.gettingProperties = false;
       vm.selectedProp = null;
       vm.uiGridOptions = null;
       vm.callTheWaiter = false;
@@ -80,8 +81,10 @@ import './index.css';
       }
 
       function getProperties() {
+        vm.gettingProperties = true;
         return properties.do.query().$promise.then(function (props) {
           vm.properties = props;
+          vm.gettingProperties = false;
           return props;
         });
       }
