@@ -13,8 +13,8 @@ module.exports = {
     components: glob.sync("./src/app/**/*.component.js")
   },
   output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: 'js/[name].js',
+    path: path.resolve(__dirname, 'public'),
     publicPath: '/'
   },
   module: {
@@ -55,33 +55,34 @@ module.exports = {
     extensions: ['.json', '.js', '.jsx', '.css']
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['public']),
     new HtmlWebpackPlugin({
       title: 'Warehouse',
       template: path.join(__dirname, 'src', 'app', 'index.template.html'),
       favicon: path.join(__dirname, 'src', 'asserts', 'img', 'favicon.png')
     }),
     new HtmlWebpackPlugin({
-      filename: 'login.html',
+      filename: 'login/index.html',
       title: 'Warehouse Login',
       inject: false,
-      template: path.join(__dirname, 'src', 'login.html'),
-      favicon: path.join(__dirname, 'src', 'asserts', 'img', 'favicon.png')
+      template: path.join(__dirname, 'src', 'login', 'index.html')
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
   // devtool: 'source-map',
-  devServer: {
-    port: 3000,
-    open: true,
-    contentBase: path.join(__dirname, 'dist'),
-    hot: true,
-    noInfo: true,
-    overlay: true,
-    writeToDisk: true,
-    proxy: {
-      "/": "http://localhost:8080"
-    },
-    openPage: 'login.html'
-  }
+  watch: true,
+  stats: 'minimal'
+  // devServer: {
+  //   port: 3000,
+  //   open: true,
+  //   contentBase: path.join(__dirname, 'public'),
+  //   hot: true,
+  //   noInfo: true,
+  //   overlay: true,
+  //   writeToDisk: true,
+  //   proxy: {
+  //     "/": "http://localhost:8080"
+  //   },
+  //   openPage: 'login.html'
+  // }
 };

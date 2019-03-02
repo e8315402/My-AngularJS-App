@@ -1,9 +1,10 @@
-
+import uuid from 'uuid/v1';
 
 export default class User {
 
-  constructor (neDB) {
-    this.neDB = neDB
+  constructor (db) {
+    if (!db) throw Error('Required database object when initialing the model: "User".');
+    this.db = db
   }
 
   insert(user, cb) {
@@ -12,13 +13,12 @@ export default class User {
       err.status = 400;
       return cb(err);
     }
-    this.neDB.insert(user, cb);
+    user.id = uuid();
+    this.db.insert(user, cb);
   }
 
   findOne(predicate, cb) {
-    this.neDB.findOne(predicate, { _id: 0 }, cb);
+    this.db.findOne(predicate, { _id: 0 }, cb);
   }
 
 }
-
-

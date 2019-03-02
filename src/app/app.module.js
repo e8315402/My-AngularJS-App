@@ -29,7 +29,7 @@ import '@uirouter/angularjs';
       $stateProvider.state(helloState);
       $stateProvider.state(aboutState);
 
-      $urlServiceProvider.rules.otherwise('users');
+      $urlServiceProvider.rules.otherwise('properties');
     })
 
   if (module.hot) {

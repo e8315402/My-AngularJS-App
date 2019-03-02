@@ -1,3 +1,4 @@
+import path from 'path';
 import express from 'express';
 import session from 'express-session';
 import bodyParser from 'body-parser';
@@ -6,25 +7,30 @@ import flash from 'connect-flash';
 import { Strategy as LocalStrategy } from 'passport-local';
 
 import neDB from './neDB';
-import Property from './modal/Property';
-import User from './modal/User';
-import { toQueryString, isEmpty } from './Utils';
+import { default as propertyApiRoute } from './modal/property';
+import { default as userApiRoute, getInstance as user } from './modal/user';
+// import { toQueryString, isEmpty } from './utils/tools';
+import logger from './utils/logger';
+import auth from './authentication'
 
 const db = new neDB();
-const property = new Property(db);
-const user = new User(db);
 
 const app = express();
 
+app.use('/js', express.static('public/js'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: 'work hard', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use(logger);
+
+propertyApiRoute.init(db).registerRoute(app);
+userApiRoute.init(db).registerRoute(app);
 
 passport.use(new LocalStrategy(function (username, password, done) {
-  user.findOne({username: username}, function (err, foundUser) {
+  user().findOne({ username: username }, function (err, foundUser) {
     if (err) {
       done(err);
     }
@@ -38,81 +44,36 @@ passport.use(new LocalStrategy(function (username, password, done) {
   });
 }));
 
-passport.serializeUser(function(foundUser, done) {
+passport.serializeUser(function (foundUser, done) {
   done(null, foundUser.id);
 });
 
-passport.deserializeUser(function(id, done) {
-  user.findOne({id: id}, done);
+passport.deserializeUser(function (id, done) {
+  user().findOne({ id: id }, done);
 });
 
-app.post('/api/properties', function (req, res) {
-  console.info("[POST] /api/properties: " + JSON.stringify(req.body));
-  property.insert(req.body, function (err) {
-    if (err) {
-      console.error(err);
-      res.status(400).send(err);
-    }
-    res.send(req.body);
-  });
+app.get('/', auth, function (req, res) {
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
-app.put('/api/properties/:id', function (req, res) {
-  console.info("[PUT] /api/properties/" + req.params['id']);
-  property.edit({_id: req.params['id']}, { $set: req.body }, function (err, numReplaced) {
-    if (err) {
-      console.error(err);
-      res.status(400).send(err);
-    }
-    res.send({found: numReplaced, data: req.body});
-  });
-})
-
-app.get('/api/properties', function (req, res) {
-  console.info("[GET] /api/properties" + (!isEmpty(req.query) ? toQueryString(req.query) : ''));
-  property.query(req.query, function (err, props) {
-    if (err) {
-      console.error(err);
-      return res.status(err.status >= 100 && err.status < 600 ? err.status : 500).send(err);
-    }
-    return res.send(props);
-  });
+app.get('/login', function (req, res) {
+  res.sendFile(path.join(__dirname, '..', 'public', 'login', 'index.html'));
 });
 
-app.delete('/api/properties', function (req, res) {
-  console.info("[DELETE] /api/properties");
-  console.info(req.query);
-  property.remove(req.query, function (err, numRemoved) {
-    if (err) {
-      console.error(err);
-      return res.status(err.status >= 100 && err.status < 600 ? err.status : 500).send(err);
-    }
-    return res.send(`${numRemoved}`);
-  });
-});
 
-app.post('/api/users', function (req, res) {
-  console.info("[POST] /api/users: " + JSON.stringify(req.body));
-  user.insert(req.body, function (err) {
-    if (err) {
-      console.error(err);
-      return res.status(err.status >= 100 && err.status < 600 ? err.status : 500).send(err);
-    }
-    return res.send(req.body)
+app.post('/login',
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true
   })
-})
-
-app.post('/login', 
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login.html',
-                                   failureFlash: true })
 );
 
-app.get('/logout', function(req, res){
+app.get('/logout', function (req, res) {
   req.logout();
-  res.redirect('/login.html');
+  res.redirect('/login');
 });
 
-app.listen(8080, function () {
-  console.log('The server is listening on 8080...');
+app.listen(3000, function () {
+  console.info('The server is listening on 3000...');
 });
