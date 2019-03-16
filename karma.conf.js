@@ -17,10 +17,10 @@ module.exports = function(config) {
     files: [
       'node_modules/angular/angular.js',
       './node_modules/angular-mocks/angular-mocks.js',
-      './public/modules.js',
-      './public/services.js',
-      './public/directives.js',
-      './public/components.js',
+      './public/js/modules.js',
+      './public/js/services.js',
+      './public/js/directives.js',
+      './public/js/components.js',
       './src/app/**/*.spec.js'
     ],
 

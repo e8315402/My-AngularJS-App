@@ -29,14 +29,14 @@ import './propertyWaiter.css';
       }
 
       function create() {
-        properties.do.save(vm.property).$promise.then(function (result) {
+        properties.save(vm.property).$promise.then(function (result) {
           console.log('New property has been created :', result);
           vm.onClose();
         });
       }
 
       function edit() {
-        properties.do.edit(vm.property).$promise.then(function (result) {
+        properties.edit(vm.property).$promise.then(function (result) {
           console.log('Property has been updated :', result);
           vm.onClose();
         });

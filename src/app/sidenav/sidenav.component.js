@@ -11,18 +11,22 @@ import './sidenav.css';
 
     function sideNav() {
 
-        function sideNavController() {
+        /** @ngInject */
+        function sideNavController(users) {
             var vm = this;
+            vm.currentUser = {};
 
             init();
 
             function init() {
-
+                users.getUserAccount().$promise.then((currentUser) => {
+                    console.info(currentUser);
+                    vm.currentUser = currentUser;
+                }).catch(console.error);
             }
         }
 
         return {
-            bindings: {},
             controller: sideNavController,
             template: sideNavTemplate
         }

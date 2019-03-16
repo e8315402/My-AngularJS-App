@@ -4,7 +4,11 @@
 
   <label for="password">Password:</label>
   <input type="password" name="password" id="password" ng-model="registerVM.account.password">
+
+  <label for="role">Role:</label>
+  <select ng-model="registerVM.account.role">
+    <option ng-repeat="role in registerVM.roles" value="{{role}}">{{ role }}</option>
+  </select>
+
   <button type="submit" id="register" ng-click="registerVM.register()">Register</button>
 </form>
-
-<pre>{{ registerVM.account | json }}</pre>

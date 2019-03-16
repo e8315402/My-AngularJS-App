@@ -8,15 +8,16 @@ import { Strategy as LocalStrategy } from 'passport-local';
 
 import neDB from './neDB';
 import { default as propertyApiRoute } from './modal/property';
-import { default as userApiRoute, getInstance as user } from './modal/user';
-// import { toQueryString, isEmpty } from './utils/tools';
+import { default as userApiRoute } from './modal/user';
+import { default as roleApiRoute } from './modal/role';
 import logger from './utils/logger';
-import auth from './authentication'
+import auth from './authentication';
 
 const db = new neDB();
 
 const app = express();
 
+app.use(logger);
 app.use('/js', express.static('public/js'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,35 +25,16 @@ app.use(session({ secret: 'work hard', resave: false, saveUninitialized: false }
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use(logger);
+
+passport.use(new LocalStrategy(auth.passwordSimpleCheck));
+passport.serializeUser(auth.sessionSerialization);
+passport.deserializeUser(auth.sessionDeserialization);
 
 propertyApiRoute.init(db).registerRoute(app);
 userApiRoute.init(db).registerRoute(app);
+roleApiRoute.init(db).registerRoute(app);
 
-passport.use(new LocalStrategy(function (username, password, done) {
-  user().findOne({ username: username }, function (err, foundUser) {
-    if (err) {
-      done(err);
-    }
-    if (!foundUser) {
-      return done(null, false, { message: 'Incorrect username.' });
-    }
-    if (foundUser.password !== password) {
-      return done(null, false, { message: 'Incorrect password.' });
-    }
-    return done(null, foundUser);
-  });
-}));
-
-passport.serializeUser(function (foundUser, done) {
-  done(null, foundUser.id);
-});
-
-passport.deserializeUser(function (id, done) {
-  user().findOne({ id: id }, done);
-});
-
-app.get('/', auth, function (req, res) {
+app.get('/', auth.require, function (req, res) {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 

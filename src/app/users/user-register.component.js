@@ -14,17 +14,22 @@ import userRegisterTemplate from './user-register.template.html';
         function userRegisterController($scope, users){
             var vm = this;
 
-            vm.account = {};
+            vm.account = {
+                username: '',
+                password: '',
+                role: ''
+            };
             vm.register = register;
+            vm.roles = [];
             
             init();
 
             function init(){
-
+                users.getRoles().$promise.then((roles) => vm.roles = roles);
             }
 
             function register() {
-                users.do.save(vm.account).$promise.then(function (result) {
+                users.save(vm.account).$promise.then(function (result) {
                     console.log('New account has been registered :', result);
                     vm.account = {};
                 })

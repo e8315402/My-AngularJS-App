@@ -1,4 +1,4 @@
-(function(){
+(function () {
     'use strict';
 
     angular
@@ -6,8 +6,21 @@
         .service('users', users)
 
     /** @ngInject */
-    function users($resource){
-      return { do: $resource('api/users') };
+    function users($resource) {
+        const options = {};
+        const customApi = {
+            getUserAccount: {
+                method: 'GET',
+                url: 'api/users/current'
+            },
+            getRoles: {
+                method: 'GET',
+                url: 'api/roles',
+                isArray: true
+            }
+        };
+
+        return $resource('api/users', options, customApi);
     }
 
 }());

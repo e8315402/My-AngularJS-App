@@ -13,7 +13,7 @@
       ngModelCtrl.$parsers.push(validation);
 
       function validation(value) {
-        properties.do.query({ number: value }).$promise.then(function (result) {
+        properties.query({ number: value }).$promise.then(function (result) {
           ngModelCtrl.$setValidity('uniqueNumber', !result.length);
         })
         return value;

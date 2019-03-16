@@ -74,7 +74,7 @@ import './index.css';
       }
 
       function deleteProperty() {
-        properties.do.delete({ number: vm.selectedProp.number }).$promise.then(function (res) {
+        properties.delete({ number: vm.selectedProp.number }).$promise.then(function (res) {
           console.info(`Delete property: ${res}`);
           vm.getProperties();
         });
@@ -82,7 +82,7 @@ import './index.css';
 
       function getProperties() {
         vm.gettingProperties = true;
-        return properties.do.query().$promise.then(function (props) {
+        return properties.query().$promise.then(function (props) {
           vm.properties = props;
           vm.gettingProperties = false;
           return props;

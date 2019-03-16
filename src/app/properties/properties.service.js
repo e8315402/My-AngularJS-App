@@ -3,11 +3,20 @@
 
     angular
         .module('property')
-        .factory('properties', properties)
+        .factory('properties', properties);
 
     /** @ngInject */
     function properties($resource) {
-        return { do: $resource('api/properties', {}, { edit: { method: 'PUT', url: 'api/properties/:id', params: { id: '@_id' } } }) };
+        const options = {};
+        const customApi = {
+            edit: {
+                method: 'PUT',
+                url: 'api/properties/:id',
+                params: { id: '@_id' }
+            }
+        };
+
+        return $resource('api/properties', options, customApi);
     }
 
 }());
