@@ -1,7 +1,12 @@
+var webpackConfig = require('./webpack.config.js');
+webpackConfig.entry = undefined;
+webpackConfig.plugins = undefined;
+webpackConfig.watch = undefined;
+
 // Karma configuration
 // Generated on Sat Dec 01 2018 18:44:27 GMT+0800 (GMT+08:00)
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -15,13 +20,13 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'node_modules/angular/angular.js',
-      './node_modules/angular-mocks/angular-mocks.js',
-      './public/js/modules.js',
-      './public/js/services.js',
-      './public/js/directives.js',
-      './public/js/components.js',
-      './src/app/**/*.spec.js'
+      { pattern: 'node_modules/angular/angular.js', watched: false },
+      { pattern: 'node_modules/angular-mocks/angular-mocks.js', watched: false },
+      'src/app/**/*.module.js',
+      'src/app/**/*.service.js',
+      'src/app/**/*.directive.js',
+      'src/app/**/*.component.js',
+      'src/app/**/*.spec.js'
     ],
 
 
@@ -33,8 +38,22 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'src/app/**/*.module.js': ['webpack', 'sourcemap'],
+      'src/app/**/*.service.js': ['webpack', 'sourcemap'],
+      'src/app/**/*.directive.js': ['webpack', 'sourcemap'],
+      'src/app/**/*.component.js': ['webpack', 'sourcemap'],
     },
 
+    // karma watches the test entry points
+    // (you don't need to specify the entry option)
+    // webpack watches dependencies
+    webpack: webpackConfig,
+
+    // webpack-dev-middleware configuration
+    webpackMiddleware: {
+      stats: 'minimal',
+      logLevel: 'warn'
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

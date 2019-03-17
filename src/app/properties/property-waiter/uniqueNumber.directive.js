@@ -7,13 +7,13 @@
 
 
   /** @ngInject */
-  function uniqueNumber(properties) {
+  function uniqueNumber(propertyService) {
 
     function link(scope, elem, attr, ngModelCtrl) {
       ngModelCtrl.$parsers.push(validation);
 
       function validation(value) {
-        properties.query({ number: value }).$promise.then(function (result) {
+        propertyService.api.query({ number: value }).$promise.then(function (result) {
           ngModelCtrl.$setValidity('uniqueNumber', !result.length);
         })
         return value;

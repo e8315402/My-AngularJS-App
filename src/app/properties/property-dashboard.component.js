@@ -12,7 +12,7 @@ import './index.css';
   function propertyDashboard() {
 
     /** @ngInject */
-    function propertyDashboardController($scope, properties, uiGridConstants) {
+    function propertyDashboardController($scope, propertyService, uiGridConstants) {
       var vm = this;
       vm.properties = [];
       vm.gettingProperties = false;
@@ -74,7 +74,7 @@ import './index.css';
       }
 
       function deleteProperty() {
-        properties.delete({ number: vm.selectedProp.number }).$promise.then(function (res) {
+        propertyService.api.delete({ number: vm.selectedProp.number }).$promise.then(function (res) {
           console.info(`Delete property: ${res}`);
           vm.getProperties();
         });
@@ -82,7 +82,7 @@ import './index.css';
 
       function getProperties() {
         vm.gettingProperties = true;
-        return properties.query().$promise.then(function (props) {
+        return propertyService.api.query().$promise.then(function (props) {
           vm.properties = props;
           vm.gettingProperties = false;
           return props;

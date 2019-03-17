@@ -69,7 +69,7 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
-  // devtool: 'source-map',
+  devtool: 'inline-source-map',
   watch: true,
   stats: 'minimal'
   // devServer: {

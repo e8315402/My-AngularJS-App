@@ -3,10 +3,10 @@
 
     angular
         .module('property')
-        .factory('properties', properties);
+        .factory('propertyService', propertyService);
 
     /** @ngInject */
-    function properties($resource) {
+    function propertyService($resource) {
         const options = {};
         const customApi = {
             edit: {
@@ -16,7 +16,9 @@
             }
         };
 
-        return $resource('api/properties', options, customApi);
+        return {
+            api: $resource('api/properties', options, customApi)
+        };
     }
 
 }());
