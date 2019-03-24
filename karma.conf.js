@@ -15,7 +15,7 @@ module.exports = function (config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'jquery-1.8.3'],
 
 
     // list of files / patterns to load in the browser
@@ -41,7 +41,7 @@ module.exports = function (config) {
       'src/app/**/*.module.js': ['webpack', 'sourcemap'],
       'src/app/**/*.service.js': ['webpack', 'sourcemap'],
       'src/app/**/*.directive.js': ['webpack', 'sourcemap'],
-      'src/app/**/*.component.js': ['webpack', 'sourcemap'],
+      'src/app/**/*.component.js': ['webpack', 'sourcemap']
     },
 
     // karma watches the test entry points

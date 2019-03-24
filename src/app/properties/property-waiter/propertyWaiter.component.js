@@ -46,7 +46,7 @@ import './propertyWaiter.css';
 
     return {
       bindings: {
-        onClose: '&isLeaving?',
+        onClose: '&?isLeaving',
         property: '<?'
       },
       controller: propertyWaiterController,

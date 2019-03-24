@@ -28,7 +28,6 @@ describe('PropertyWaiter', () => {
       $httpBackend.flush();
     });
 
-    
     it('should put the new property data to "api/properties" when editing an existing property.', () => {
       const propertyToBeEdited = {
         number: '123456789-123',
@@ -78,13 +77,134 @@ describe('PropertyWaiter', () => {
 
   });
 
-  xdescribe('Views', () => {
+  describe('Views', () => {
 
-    it('should have a form to create a new property.', () => {
+    describe('Property waiter provides a form that contains the fields against the property attributes', () => {
+      let $compile, $rootScope;
+      let propertyWaiter;
+
+      beforeEach(inject((_$compile_, _$rootScope_) => {
+        $compile = _$compile_;
+        $rootScope = _$rootScope_;
+      }));
+
+      beforeEach(() => {
+        propertyWaiter = $compile('<property-waiter></property-waiter>')($rootScope);
+        $rootScope.$digest();
+      });
+
+      it('should have a form to create a new property.', () => {
+        formElem = propertyWaiter.find('form');
+        expect(formElem).toBeDefined();
+        expect(formElem.prop('id')).toEqual('waiterForm');
+      });
+
+      it('should have a text input field for user to type the number.', () => {
+        const nameInputElem = propertyWaiter.find('form').find('#number');
+        expect(nameInputElem.prop('id')).toEqual('number');
+        expect(nameInputElem.prop('type')).toEqual('text');
+        expect(nameInputElem.prop('name')).toEqual('number');
+        expect(nameInputElem.prop('required')).toBeTruthy();
+      });
+
+      it('should have a text input field for user to type the make.', () => {
+        const makeInputElem = propertyWaiter.find('form').find('#make');
+        expect(makeInputElem).toBeDefined();
+        expect(makeInputElem.prop('id')).toEqual('make');
+        expect(makeInputElem.prop('type')).toEqual('text');
+        expect(makeInputElem.prop('name')).toEqual('make');
+        expect(makeInputElem.prop('required')).toBeTruthy();
+      });
+
+      it('should have a text input field for user to type the model.', () => {
+        const modelInputElem = propertyWaiter.find('form').find('#model');
+        expect(modelInputElem).toBeDefined();
+        expect(modelInputElem.prop('id')).toEqual('model');
+        expect(modelInputElem.prop('type')).toEqual('text');
+        expect(modelInputElem.prop('name')).toEqual('model');
+        expect(modelInputElem.prop('required')).toBeTruthy();
+      });
+
+      it('should have a text input field for user to type the property type.', () => {
+        const typeInputElem = propertyWaiter.find('form').find('#type');
+        expect(typeInputElem).toBeDefined();
+        expect(typeInputElem.prop('id')).toEqual('type');
+        expect(typeInputElem.prop('type')).toEqual('text');
+        expect(typeInputElem.prop('name')).toEqual('type');
+      });
+
+      it('should have a text input field for user to type the cost.', () => {
+        const costInputElem = propertyWaiter.find('form').find('#cost');
+        expect(costInputElem).toBeDefined();
+        expect(costInputElem.prop('id')).toEqual('cost');
+        expect(costInputElem.prop('type')).toEqual('number');
+        expect(costInputElem.prop('name')).toEqual('cost');
+        expect(costInputElem.prop('required')).toBeTruthy();
+      });
+
+      it('should have a text input field for user to type the present value.', () => {
+        const presentValueInputElem = propertyWaiter.find('form').find('#presentValue');
+        expect(presentValueInputElem).toBeDefined();
+        expect(presentValueInputElem.prop('id')).toEqual('presentValue');
+        expect(presentValueInputElem.prop('type')).toEqual('number');
+        expect(presentValueInputElem.prop('name')).toEqual('presentValue');
+      });
+
+      it('should have a text input field for user to type the purchase date.', () => {
+        const purchaseDateInputElem = propertyWaiter.find('form').find('#purchaseDate');
+        expect(purchaseDateInputElem).toBeDefined();
+        expect(purchaseDateInputElem.prop('id')).toEqual('purchaseDate');
+        expect(purchaseDateInputElem.prop('type')).toEqual('date');
+        expect(purchaseDateInputElem.prop('name')).toEqual('purchaseDate');
+        expect(purchaseDateInputElem.prop('required')).toBeTruthy();
+      });
+
+      it('should have a text input field for user to type the limitation of age.', () => {
+        const ageLimitInputElem = propertyWaiter.find('form').find('#ageLimit');
+        expect(ageLimitInputElem).toBeDefined();
+        expect(ageLimitInputElem.prop('id')).toEqual('ageLimit');
+        expect(ageLimitInputElem.prop('type')).toEqual('number');
+        expect(ageLimitInputElem.prop('name')).toEqual('ageLimit');
+      });
+
+      it('should have a text input field for user to type the custodian.', () => {
+        const custodianInputElem = propertyWaiter.find('form').find('#custodian');
+        expect(custodianInputElem).toBeDefined();
+        expect(custodianInputElem.prop('id')).toEqual('custodian');
+        expect(custodianInputElem.prop('type')).toEqual('text');
+        expect(custodianInputElem.prop('name')).toEqual('custodian');
+        expect(custodianInputElem.prop('required')).toBeTruthy();
+      });
+
+      it('should have a text input field for user to type the user.', () => {
+        const userInputElem = propertyWaiter.find('form').find('#user');
+        expect(userInputElem).toBeDefined();
+        expect(userInputElem.prop('id')).toEqual('user');
+        expect(userInputElem.prop('type')).toEqual('text');
+        expect(userInputElem.prop('name')).toEqual('user');
+      });
+
+      it('should have a text input field for user to type the location.', () => {
+        const locationInputElem = propertyWaiter.find('form').find('#location');
+        expect(locationInputElem).toBeDefined();
+        expect(locationInputElem.prop('id')).toEqual('location');
+        expect(locationInputElem.prop('type')).toEqual('text');
+        expect(locationInputElem.prop('name')).toEqual('location');
+        expect(locationInputElem.prop('required')).toBeTruthy();
+      });
+
+      it('should have a text input field for user to type the placement.', () => {
+        const placementInputElem = propertyWaiter.find('form').find('#placement');
+        expect(placementInputElem).toBeDefined();
+        expect(placementInputElem.prop('id')).toEqual('placement');
+        expect(placementInputElem.prop('type')).toEqual('text');
+        expect(placementInputElem.prop('name')).toEqual('placement');
+      });
+
 
     });
 
-    describe('Property waiter requires user to fill out necessary fields when creating a new property.', () => {
+    xdescribe('Property waiter requires user to fill out necessary fields when creating a new property.', () => {
 
       it('should NOT enable the creating button if user doesn\'t provide the name.', () => {
 
