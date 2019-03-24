@@ -11,9 +11,9 @@ import './propertyWaiter.css';
 
   function propertyWaiter() {
 
-    function propertyWaiterController(properties) {
+    function propertyWaiterController(propertyService) {
       var vm = this;
-      vm.property = {};
+      vm.newProperty = {};
       vm.close = close;
       vm.create = create;
       vm.edit = edit;
@@ -29,16 +29,16 @@ import './propertyWaiter.css';
       }
 
       function create() {
-        properties.save(vm.property).$promise.then(function (result) {
+        propertyService.api.save(vm.newProperty).$promise.then(function (result) {
           console.log('New property has been created :', result);
-          vm.onClose();
+          if (vm.onClose) vm.onClose();
         });
       }
 
       function edit() {
-        properties.edit(vm.property).$promise.then(function (result) {
+        propertyService.api.edit(vm.property).$promise.then(function (result) {
           console.log('Property has been updated :', result);
-          vm.onClose();
+          if (vm.onClose) vm.onClose();
         });
       }
 
@@ -46,8 +46,8 @@ import './propertyWaiter.css';
 
     return {
       bindings: {
-        onClose: '&isLeaving',
-        property: '<'
+        onClose: '&isLeaving?',
+        property: '<?'
       },
       controller: propertyWaiterController,
       controllerAs: 'waiterVM',

@@ -3,15 +3,23 @@
 
     angular
         .module('user')
-        .service('users', users)
+        .factory('userService', userService)
 
     /** @ngInject */
-    function users($resource) {
+    function userService($resource) {
+        let currentUser = undefined;
         const options = {};
         const customApi = {
             getUserAccount: {
                 method: 'GET',
-                url: 'api/users/current'
+                url: 'api/users/current',
+                interceptor: {
+                    request: config => config,
+                    response: (response) => {
+                        currentUser = response.resource;
+                        return currentUser;
+                    }
+                }
             },
             getRoles: {
                 method: 'GET',
@@ -20,7 +28,10 @@
             }
         };
 
-        return $resource('api/users', options, customApi);
+        return {
+            api: $resource('api/users', options, customApi),
+            getCurrentUser: () => currentUser
+        };
     }
 
 }());

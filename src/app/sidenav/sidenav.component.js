@@ -12,14 +12,14 @@ import './sidenav.css';
     function sideNav() {
 
         /** @ngInject */
-        function sideNavController(users) {
+        function sideNavController(userService) {
             var vm = this;
             vm.currentUser = {};
 
             init();
 
             function init() {
-                users.getUserAccount().$promise.then((currentUser) => {
+                userService.api.getUserAccount().$promise.then((currentUser) => {
                     console.info(currentUser);
                     vm.currentUser = currentUser;
                 }).catch(console.error);

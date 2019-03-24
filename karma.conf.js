@@ -101,6 +101,11 @@ module.exports = function (config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    client: {
+      // Capture all console output and pipe it to the terminal.
+      captureConsole: false
+    }
   })
 }
