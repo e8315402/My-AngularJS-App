@@ -16,7 +16,7 @@ describe('PropertyWaiter', () => {
         makeAndModel: 'Banana',
         type: 'Phone'
       };
-      const bindings = {};
+      const bindings = { mode: 'CREATE' };
       const ctrl = $componentController('propertyWaiter', null, bindings);
 
       ctrl.newProperty.number = propertyToBeCreated.number;
@@ -39,7 +39,7 @@ describe('PropertyWaiter', () => {
         makeAndModel: 'Orange',
         type: 'Smart Phone'
       };
-      const bindings = { property: propertyToBeEdited };
+      const bindings = { property: propertyToBeEdited, mode: 'EDIT' };
       const ctrl = $componentController('propertyWaiter', null, bindings);
 
       ctrl.property.number = editedProperty.number;
@@ -55,7 +55,7 @@ describe('PropertyWaiter', () => {
       $httpBackend.whenPOST(/api\/properties/).respond({});
 
       const onCloseSpy = jasmine.createSpy('onClose');
-      const bindings = { onClose: onCloseSpy };
+      const bindings = { onClose: onCloseSpy, mode: 'CREATE' };
       const ctrl = $componentController('propertyWaiter', null, bindings);
 
       ctrl.create();
@@ -67,7 +67,7 @@ describe('PropertyWaiter', () => {
       $httpBackend.whenPUT(/api\/properties/).respond({});
 
       const onCloseSpy = jasmine.createSpy('onClose');
-      const bindings = { onClose: onCloseSpy };
+      const bindings = { onClose: onCloseSpy, mode: 'EDIT' };
       const ctrl = $componentController('propertyWaiter', null, bindings);
 
       ctrl.edit();
@@ -89,7 +89,7 @@ describe('PropertyWaiter', () => {
       }));
 
       beforeEach(() => {
-        propertyWaiter = $compile('<property-waiter></property-waiter>')($rootScope);
+        propertyWaiter = $compile('<property-waiter mode="CREATE"></property-waiter>')($rootScope);
         $rootScope.$digest();
       });
 
@@ -201,13 +201,117 @@ describe('PropertyWaiter', () => {
         expect(placementInputElem.prop('name')).toEqual('placement');
       });
 
+    });
+
+    describe('Property waiter provides two mode: "EDIT" and "CREATE" for user to edit an existing property or create a new property.', () => {
+
+      let $compile, $rootScope, $exceptionHandler;
+      let propertyWaiter;
+
+      beforeEach(inject((_$compile_, _$rootScope_, _$exceptionHandler_) => {
+        $compile = _$compile_;
+        $rootScope = _$rootScope_;
+        $exceptionHandler = _$exceptionHandler_;
+      }));
+
+      it('should require a attribute "mode" to tell it which mode it should be.', (done) => {
+        try {
+          propertyWaiter = $compile('<property-waiter></property-waiter>')($rootScope);
+          fail('The attribute: "mode" should be required.');
+        } catch (error) {
+          expect($exceptionHandler.errors.length).toEqual(1);
+          expect($exceptionHandler.errors).toContain("The attribute \"mode\" for property-waiter is required.");
+          done();
+        }
+      });
+
+      xdescribe('In the "EDIT" mode, ', () => {
+
+        let $compile, $rootScope;
+        let propertyWaiter;
+  
+        beforeEach(inject((_$compile_, _$rootScope_) => {
+          $compile = _$compile_;
+          $rootScope = _$rootScope_;
+        }));
+
+        it('should expect an existing property to be served.', () => {
+          propertyWaiter = $compile('<property-waiter></property-waiter>')($rootScope);
+        });
+
+        it('should present the property name in the name field.', () => {
+          
+        });
+
+        it('should present the property _ in the _ field.', () => {
+          
+        });
+
+        it('should present the property _ in the _ field.', () => {
+          
+        });
+
+        it('should present the property _ in the _ field.', () => {
+          
+        });
+
+        it('should present the property _ in the _ field.', () => {
+          
+        });
+
+        it('should present the property _ in the _ field.', () => {
+          
+        });
+
+        it('should show the edit button.', () => {
+          
+        });
+
+        describe('should enable the edit button only when any of field is changed.', () => {
+          
+        });
+
+        it('should hide the create button.', () => {
+          
+        });
+
+        it('should show the cancel button.', () => {
+          
+        });
+
+      });
+
+      xdescribe('In the "CREATE" mode, ', () => {
+        xit('should have a submit button for user to create a new property.', () => {
+          const submitButton = propertyWaiter.find('form').find('#formSubmit');
+          expect(submitButton).toBeDefined();
+          expect(submitButton.prop('id')).toEqual('formSubmit');
+          expect(submitButton.prop('type')).toEqual('submit');
+          expect(submitButton.text()).toEqual('Create');
+        });
+      });
 
     });
 
     xdescribe('Property waiter requires user to fill out necessary fields when creating a new property.', () => {
+      
+      let $compile, $rootScope;
+      let propertyWaiter;
+
+      beforeEach(inject((_$compile_, _$rootScope_) => {
+        $compile = _$compile_;
+        $rootScope = _$rootScope_;
+      }));
+
+      beforeEach(() => {
+        propertyWaiter = $compile('<property-waiter></property-waiter>')($rootScope);
+        $rootScope.$digest();
+      });
 
       it('should NOT enable the creating button if user doesn\'t provide the name.', () => {
-
+        const nameInputElem = propertyWaiter.find('form').find('#name');
+        nameInputElem.value('');
+        const createButton = propertyWaiter.find('form')
       });
 
       it('should NOT enable the creating button if user doesn\'t provide the make.', () => {

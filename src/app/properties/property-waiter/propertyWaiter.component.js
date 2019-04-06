@@ -18,10 +18,8 @@ import './propertyWaiter.css';
       vm.create = create;
       vm.edit = edit;
 
-      init();
-
-      function init() {
-        
+      vm.$onInit = () => {
+        if (vm.mode === undefined) throw "The attribute \"mode\" for property-waiter is required.";
       }
 
       function close() {
@@ -47,7 +45,8 @@ import './propertyWaiter.css';
     return {
       bindings: {
         onClose: '&?isLeaving',
-        property: '<?'
+        property: '<?',
+        mode: '@'
       },
       controller: propertyWaiterController,
       controllerAs: 'waiterVM',
