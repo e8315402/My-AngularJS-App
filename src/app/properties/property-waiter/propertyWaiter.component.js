@@ -72,7 +72,7 @@ import './propertyWaiter.css';
       }
 
       function edit() {
-        propertyService.api.edit(vm.property).$promise.then(function (result) {
+        propertyService.api.edit(vm.existingProperty).$promise.then(function (result) {
           console.log('Property has been updated :', result);
           if (vm.onClose) vm.onClose();
         });
@@ -83,7 +83,7 @@ import './propertyWaiter.css';
     return {
       bindings: {
         onClose: '&?isLeaving',
-        property: '<?',
+        existingProperty: '=',
         mode: '@'
       },
       controller: propertyWaiterController,

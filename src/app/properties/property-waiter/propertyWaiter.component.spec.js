@@ -192,7 +192,7 @@ describe('PropertyWaiter', () => {
             user: 'Chenny',
             location: 'Office 5566, Autos.',
             placement: 'Part 3'
-          }
+          };
         });
 
         it('should require property number.', () => {
@@ -331,6 +331,50 @@ describe('PropertyWaiter', () => {
           }
         });
       })
+    });
+
+    describe('is able to edit an existing property', () => {
+
+      let $componentController, $httpBackend;
+      let propertyToBeEdited;
+
+      beforeEach(inject((_$componentController_, _$httpBackend_) => {
+        $componentController = _$componentController_;
+        $httpBackend = _$httpBackend_;
+      }))
+
+      beforeEach(() => {
+        propertyToBeEdited = {
+          number: '5945561-1168462',
+          name: 'Office Table',
+          make: 'eMSO Company',
+          model: 'Solid SSS',
+          type: 'Table',
+          cost: 12000,
+          presentValue: 12000,
+          purchaseDate: new Date(),
+          ageLimit: 99,
+          custodian: 'Teddy',
+          user: 'Chenny',
+          location: 'Office 5566, Autos.',
+          placement: 'Part 3'
+        }
+        const bindings = {
+          existingProperty: propertyToBeEdited
+        };
+        propertyWaiterCtrl = $componentController('propertyWaiter', null, bindings);
+      });
+
+      it('should be able to edit property number.', () => {
+        const expectPropNumber = '000000-111111';
+        propertyWaiterCtrl.existingProperty.number = expectPropNumber;
+
+        propertyToBeEdited.number = expectPropNumber;
+        $httpBackend.expectPUT(/api\/properties/, propertyToBeEdited).respond('succeed');
+        propertyWaiterCtrl.edit();
+        $httpBackend.flush();
+
+      });
     });
   });
 
