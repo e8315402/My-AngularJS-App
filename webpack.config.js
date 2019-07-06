@@ -8,6 +8,7 @@ module.exports = {
   mode: 'development',
   entry: {
     modules: glob.sync("./src/app/**/*.module.js"),
+    constants: glob.sync("./src/app/**/*.constant.js"),
     services: glob.sync("./src/app/**/*.service.js"),
     directives: glob.sync('./src/app/**/*.directive.js'),
     components: glob.sync("./src/app/**/*.component.js")
@@ -41,7 +42,6 @@ module.exports = {
         test: /\.html?$/,
         exclude: [
           path.resolve(__dirname, 'node_modules'),
-          path.resolve(__dirname, 'bower_components')
         ],
         use: { loader: 'html-loader' }
       },
@@ -55,6 +55,9 @@ module.exports = {
     extensions: ['.json', '.js', '.jsx', '.css']
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      angular: 'angular'
+    }),
     new CleanWebpackPlugin(['public']),
     new HtmlWebpackPlugin({
       title: 'Warehouse',
@@ -69,7 +72,7 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
-  devtool: 'inline-source-map',
+  devtool: 'eval',
   watch: true,
   stats: 'minimal'
   // devServer: {

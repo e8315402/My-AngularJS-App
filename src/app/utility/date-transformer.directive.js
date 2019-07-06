@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('utils')
+    .module('utility')
     .directive('dateTransformer', dateTransformer);
 
 

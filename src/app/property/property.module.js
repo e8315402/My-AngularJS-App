@@ -11,8 +11,7 @@ import 'angular-ui-grid/ui-grid.min.css';
             'ui.grid',
             'ui.grid.autoResize',
             'ui.grid.selection',
-            'component',
-            'utils'
+            'utility'
         ]);
 
 }());

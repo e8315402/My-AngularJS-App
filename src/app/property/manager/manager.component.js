@@ -1,5 +1,5 @@
-import template from './propertyWaiter.template.html';
-import './propertyWaiter.css';
+import template from './manager.html';
+import './style/manager.css';
 
 (function () {
   'use strict';
@@ -83,8 +83,8 @@ import './propertyWaiter.css';
     return {
       bindings: {
         onClose: '&?isLeaving',
-        existingProperty: '=',
-        mode: '@'
+        property: '=',
+        mode: '<'
       },
       controller: propertyWaiterController,
       controllerAs: 'waiterVM',

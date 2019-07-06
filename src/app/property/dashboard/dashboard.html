@@ -10,5 +10,5 @@
   <div class="pd-content">
     <div id="propertyList" ui-grid="dashboardVM.uiGridOptions" ui-grid-selection ui-grid-auto-resize></div>
   </div>
-  <property-waiter property="dashboardVM.selectedProp" is-leaving="dashboardVM.okThankYou()" ng-show="dashboardVM.callTheWaiter"></property-waiter>
+  <property-waiter mode="dashboardVM.waiterMode" property="dashboardVM.selectedProp" is-leaving="dashboardVM.okThankYou()" ng-show="dashboardVM.callTheWaiter"></property-waiter>
 </div>

@@ -12,7 +12,7 @@ import './index.css';
   function propertyDashboard() {
 
     /** @ngInject */
-    function propertyDashboardController($scope, propertyService, uiGridConstants) {
+    function propertyDashboardController($scope, propertyService, uiGridConstants, MODE) {
       var vm = this;
       vm.properties = [];
       vm.gettingProperties = false;
@@ -20,6 +20,7 @@ import './index.css';
       vm.uiGridOptions = null;
       vm.callTheWaiter = false;
 
+      vm.waiterMode = undefined;
       vm.createProperty = createProperty;
       vm.getProperties = getProperties;
       vm.editProperty = editProperty;
@@ -65,11 +66,12 @@ import './index.css';
       }
 
       function createProperty() {
+        vm.waiterMode = MODE.NEW;
         vm.callTheWaiter = true;
       }
 
-      function editProperty(prop) {
-        console.info(`Edit property: ${prop}`);
+      function editProperty() {
+        vm.waiterMode = MODE.EDIT;
         vm.callTheWaiter = true;
       }
 

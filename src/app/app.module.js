@@ -1,4 +1,3 @@
-import angular from 'angular';
 import './index.css';
 import '@uirouter/angularjs';
 
@@ -8,7 +7,6 @@ import '@uirouter/angularjs';
   angular
     .module('warehouse', [
       'property',
-      'component',
       'utils',
       'user',
       'ui.router'

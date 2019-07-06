@@ -373,7 +373,7 @@ describe('PropertyWaiter', () => {
         $httpBackend.expectPUT(/api\/properties/, propertyToBeEdited).respond('succeed');
         propertyWaiterCtrl.edit();
         $httpBackend.flush();
-
+        
       });
     });
   });
