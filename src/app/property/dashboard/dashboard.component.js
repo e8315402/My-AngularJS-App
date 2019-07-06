@@ -14,14 +14,16 @@ export default function dashboard() {
     vm.uiGridOptions = null;
     vm.callTheWaiter = false;
 
-    vm.waiterMode = undefined;
+    vm.waiterMode = MODE.VIEW;
     vm.createProperty = createProperty;
+    vm.checkProperty = checkProperty;
     vm.getProperties = getProperties;
     vm.editProperty = editProperty;
     vm.deleteProperty = deleteProperty;
     vm.gridListener = {};
     vm.gridListener.onSelect = onSelect;
-    vm.okThankYou = okThankYou;
+    vm.onCancel = onCancel;
+    vm.onDone = onDone;
 
     init();
 
@@ -64,16 +66,18 @@ export default function dashboard() {
       vm.callTheWaiter = true;
     }
 
+    function checkProperty() {
+      vm.waiterMode = MODE.VIEW;
+      vm.callTheWaiter = true;
+    }
+
     function editProperty() {
       vm.waiterMode = MODE.EDIT;
       vm.callTheWaiter = true;
     }
 
     function deleteProperty() {
-      propertyService.api.delete({ number: vm.selectedProp.number }).$promise.then(function (res) {
-        console.info(`Delete property: ${res}`);
-        vm.getProperties();
-      });
+      propertyService.api.delete({ number: vm.selectedProp.number }).$promise.then(vm.getProperties);
     }
 
     function getProperties() {
@@ -81,6 +85,7 @@ export default function dashboard() {
       return propertyService.api.query().$promise.then(function (props) {
         vm.properties = props;
         vm.gettingProperties = false;
+        vm.selectedProp = null;
         return props;
       });
     }
@@ -89,7 +94,11 @@ export default function dashboard() {
       vm.selectedProp = row.isSelected ? row.entity : null;
     }
 
-    function okThankYou() {
+    function onCancel() {
+      vm.callTheWaiter = false;
+    }
+
+    function onDone() {
       vm.callTheWaiter = false;
       vm.getProperties();
     }

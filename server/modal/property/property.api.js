@@ -8,8 +8,8 @@ export default class PropertyApi {
     app.route('/api/properties')
       .get(this.get.bind(this))
       .post(this.post.bind(this))
-      .put(this.put.bind(this))
       .delete(this.delete.bind(this));
+    app.route('/api/properties/:id').put(this.put.bind(this));
   }
 
   get(req, res) {

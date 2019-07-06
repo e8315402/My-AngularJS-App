@@ -1,6 +1,6 @@
-.propertyWaiter {
-  max-width: 600px;
-  min-width: 400px;
+.managerForm {
+  max-width: 800px;
+  min-width: 600px;
 }
 
 .modal {
@@ -47,7 +47,7 @@ input.ng-touched.ng-invalid {
   border: 1px solid red;
 }
 
-.submit-button, .cancel-button, .edit-button {
+.submit-button, .cancel-button, .edit-button, .close-button {
   float: right;
   margin-left: 5px;
 }

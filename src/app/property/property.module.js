@@ -18,7 +18,7 @@ import propertyService from './api';
             'utility'
         ])
         .factory('propertyService', propertyService)
-        .component('manager', manager())
-        .component('dashboard', dashboard());
+        .component('whManager', manager())
+        .component('whDashboard', dashboard());
 
 }());

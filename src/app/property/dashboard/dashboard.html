@@ -1,6 +1,7 @@
-<div id="propertyDashboard" class="dashboard">
-  <div id="propertyToolbar" class="pd-toolbar">
+<div id="dashboard" class="dashboard">
+  <div id="dashboardToolbar" class="pd-toolbar">
     <button ng-click="dashboardVM.createProperty()">Create</button>
+    <button ng-click="dashboardVM.checkProperty()" ng-disabled="!dashboardVM.selectedProp">View</button>
     <button ng-click="dashboardVM.editProperty()" ng-disabled="!dashboardVM.selectedProp">Edit</button>
     <button ng-click="dashboardVM.deleteProperty()" ng-disabled="!dashboardVM.selectedProp">Delete</button>
     <button ng-click="dashboardVM.getProperties()">Refresh</button>
@@ -10,5 +11,11 @@
   <div class="pd-content">
     <div id="propertyList" ui-grid="dashboardVM.uiGridOptions" ui-grid-selection ui-grid-auto-resize></div>
   </div>
-  <property-waiter mode="dashboardVM.waiterMode" property="dashboardVM.selectedProp" is-leaving="dashboardVM.okThankYou()" ng-show="dashboardVM.callTheWaiter"></property-waiter>
+  <wh-manager 
+    mode="dashboardVM.waiterMode" 
+    property="dashboardVM.selectedProp" 
+    on-cancel="dashboardVM.onCancel()" 
+    on-done="dashboardVM.onDone()"
+    ng-if="dashboardVM.callTheWaiter">
+  </wh-manager>
 </div>

@@ -5,7 +5,7 @@ import template from './registry.html';
 export default function registry() {
 
     /** @ngInject */
-    function controller($scope, users) {
+    function controller($scope, userService) {
         var vm = this;
 
         vm.account = {
@@ -19,11 +19,11 @@ export default function registry() {
         init();
 
         function init() {
-            users.getRoles().$promise.then((roles) => vm.roles = roles);
+            userService.api.getRoles().$promise.then((roles) => vm.roles = roles);
         }
 
         function register() {
-            users.save(vm.account).$promise.then(function (result) {
+            userService.api.save(vm.account).$promise.then(function (result) {
                 console.log('New account has been registered :', result);
                 vm.account = {};
             })

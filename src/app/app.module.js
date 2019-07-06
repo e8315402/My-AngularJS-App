@@ -23,13 +23,13 @@ import './index.css';
       var helloState = {
         name: 'properties',
         url: '/properties',
-        component: 'dashboard'
+        component: 'whDashboard'
       }
 
       var aboutState = {
         name: 'users',
         url: '/users',
-        component: 'registry'
+        component: 'whRegistry'
       }
 
       $stateProvider.state(helloState);
@@ -38,6 +38,6 @@ import './index.css';
       $urlServiceProvider.rules.otherwise('properties');
     })
     .constant('MODE', MODE)
-    .component('introduction', introduction());
+    .component('whIntroduction', introduction());
 
 }());

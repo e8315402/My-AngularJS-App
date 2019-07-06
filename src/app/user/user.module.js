@@ -9,6 +9,6 @@ import registry from './registry';
             'ngResource'
         ])
         .factory('userService', userService)
-        .component('registry', registry());
+        .component('whRegistry', registry());
 
 }());
