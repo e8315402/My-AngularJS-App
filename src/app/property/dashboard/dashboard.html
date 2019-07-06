@@ -9,7 +9,12 @@
   </div>
   <hr>
   <div class="pd-content">
-    <div id="propertyList" ui-grid="dashboardVM.uiGridOptions" ui-grid-selection ui-grid-auto-resize></div>
+    <div id="propertyList" 
+         ui-grid="dashboardVM.uiGridOptions" 
+         ui-grid-selection 
+         ui-grid-auto-resize 
+         ui-grid-resize-columns>
+    </div>
   </div>
   <wh-manager 
     mode="dashboardVM.waiterMode" 

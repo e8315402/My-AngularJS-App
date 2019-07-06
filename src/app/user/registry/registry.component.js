@@ -15,11 +15,13 @@ export default function registry() {
         };
         vm.register = register;
         vm.roles = [];
+        vm.users = [];
 
         init();
 
         function init() {
             userService.api.getRoles().$promise.then((roles) => vm.roles = roles);
+            userService.api.getUsers().$promise.then(users => vm.users = users);
         }
 
         function register() {

@@ -14,21 +14,11 @@
                      ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"
                      unique-number>
 
-              <label for="makeAndModel">Make and Model:</label>
+              <label for="makeAndModel">Make / Model:</label>
               <input id="makeAndModel" type="text" required name="makeAndModel" 
                      ng-disabled="!managerVM.editable" 
                      ng-model="managerVM.property.makeAndModel">
               
-              <label for="make">Make:</label>
-              <input id="make" type="text" required name="make"
-                     ng-disabled="!managerVM.editable" 
-                     ng-model="managerVM.property.make">
-
-              <label for="model">Model:</label>
-              <input id="model" type="text" required name="model"
-                     ng-disabled="!managerVM.editable" 
-                     ng-model="managerVM.property.model">
-
               <label for="type">Type:</label>
               <input id="type" type="text" required name="type"
                      ng-disabled="!managerVM.editable" 
@@ -74,6 +64,12 @@
               <input id="placement" type="text" name="placement" 
                      ng-disabled="!managerVM.editable" 
                      ng-model="managerVM.property.placement">
+              
+              <label for="remarks">Remarks:</label>
+              <textarea name="remarks" id="remarks" cols="30" rows="10"
+                        ng-disabled="!managerVM.editable" 
+                        ng-model="managerVM.property.remarks"
+              ></textarea>
             </div>
           </fieldset>
           <hr>

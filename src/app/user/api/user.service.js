@@ -20,6 +20,11 @@ export default function userService($resource) {
             method: 'GET',
             url: 'api/roles',
             isArray: true
+        },
+        getUsers: {
+            method: 'GET',
+            url: 'api/users',
+            isArray: true
         }
     };
 

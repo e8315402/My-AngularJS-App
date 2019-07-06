@@ -45,13 +45,15 @@ export default function dashboard() {
           { name: 'custodian', field: 'custodian' },
           { name: 'user', field: 'user' },
           { name: 'location', field: 'location' },
-          { name: 'placement', field: 'placement' }
+          { name: 'placement', field: 'placement' },
+          { name: 'remarks', field: 'remarks' }
         ],
         data: 'dashboardVM.properties',
-        minimumColumnSize: 150,
+        minimumColumnSize: 100,
         enableHorizontalScrollbar: uiGridConstants.scrollbars.WHEN_NEEDED,
         enableVerticalScrollbar: uiGridConstants.scrollbars.WHEN_NEEDED,
         enableFullRowSelection: true,
+        enableColumnResizing: true,
         enableRowSelection: true,
         enableFiltering: true,
         multiSelect: false,

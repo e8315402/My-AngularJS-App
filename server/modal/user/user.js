@@ -14,11 +14,16 @@ export default class User {
       return cb(err);
     }
     user.id = uuid();
+    user._TABLE = 'USER';
     this.db.insert(user, cb);
   }
 
   findOne(predicate, cb) {
-    this.db.findOne(predicate, { _id: 0 }, cb);
+    this.db.findOne({ $and: [ { _TABLE: 'USER' } , predicate] }, { _id: 0 }, cb);
+  }
+
+  query(predicate, cb) {
+    this.db.find({ $and: [ { _TABLE: 'USER' } , predicate] }, { _id: 0 }, cb);
   }
 
 }

@@ -15,6 +15,7 @@ import propertyService from './api';
             'ui.grid',
             'ui.grid.autoResize',
             'ui.grid.selection',
+            'ui.grid.resizeColumns',
             'utility'
         ])
         .factory('propertyService', propertyService)

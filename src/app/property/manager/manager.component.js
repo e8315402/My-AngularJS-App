@@ -11,8 +11,7 @@ export default function manager() {
     const propertyTemplate = {
       number: null,
       name: null,
-      make: null,
-      model: null,
+      makeAndModel: null,
       type: null,
       cost: 0,
       presentValue: 0,
@@ -21,7 +20,8 @@ export default function manager() {
       custodian: null,
       user: null,
       location: null,
-      placement: null
+      placement: null,
+      remarks: ''
     };
     vm.MODE = MODE;
     vm.close = close;

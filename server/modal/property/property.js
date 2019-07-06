@@ -6,18 +6,20 @@ export default class Property {
   }
 
   insert(prop, cb) {
+    prop._TABLE = 'PROPERTY';
     this.db.insert(prop, cb);
   }
 
   query(predicate, cb) {
-    this.db.find(predicate, cb);
+    this.db.find({ $and: [ { _TABLE: 'PROPERTY' } , predicate] }, cb);
   }
 
   remove(predicate, cb) {
-    this.db.remove(predicate, cb);
+    this.db.remove({ $and: [ { _TABLE: 'PROPERTY' } , predicate] }, cb);
   }
 
   edit(predicate, update, cb) {
-    this.db.update(predicate, update, {}, cb);
+    update._TABLE = 'PROPERTY';
+    this.db.update({ $and: [ { _TABLE: 'PROPERTY' } , predicate] }, update, {}, cb);
   }
 };

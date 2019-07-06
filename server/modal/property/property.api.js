@@ -33,7 +33,7 @@ export default class PropertyApi {
   }
 
   put(req, res) {
-    this.property.edit({ _id: req.params['id'] }, { $set: req.body }, function (err, numReplaced) {
+    this.property.edit({ _id: req.params['id'] }, req.body, function (err, numReplaced) {
       if (err) {
         console.error(err);
         res.status(400).send(err);
