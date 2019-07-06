@@ -1,5 +1,5 @@
 <div>
-  <div class="modal-overlay" ng-click="waiterVM.close()"></div>
+  <div class="modal-overlay" ng-click="managerVM.close()"></div>
   <div class="modal">
     <div class="modal-panel">
       <div class="modal-content">
@@ -9,68 +9,68 @@
             <div class="mono-cols">
               <label for="number">Number:</label>
               <input id="number" type="text" required name="number" 
-                     ng-model="waiterVM.property.number" 
+                     ng-model="managerVM.property.number" 
                      ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"
                      unique-number>
 
               <label for="makeAndModel">Make and Model:</label>
               <input id="makeAndModel" type="text" required name="makeAndModel" 
-                     ng-model="waiterVM.property.makeAndModel">
+                     ng-model="managerVM.property.makeAndModel">
               
               <label for="make">Make:</label>
               <input id="make" type="text" required name="make"
-                     ng-model="waiterVM.property.make">
+                     ng-model="managerVM.property.make">
 
               <label for="model">Model:</label>
               <input id="model" type="text" required name="model"
-                     ng-model="waiterVM.property.model">
+                     ng-model="managerVM.property.model">
 
               <label for="type">Type:</label>
               <input id="type" type="text" required name="type"
-                     ng-model="waiterVM.property.type" type="text">
+                     ng-model="managerVM.property.type" type="text">
 
               <label for="cost">Cost:</label>
               <input id="cost" type="number" required name="cost" min="0" 
-                     ng-model="waiterVM.property.cost">
+                     ng-model="managerVM.property.cost">
 
               <label for="presentValue">Present Value:</label>
               <input id="presentValue" type="number" name="presentValue" min="0" 
-                     ng-model="waiterVM.property.presentValue" disabled>
+                     ng-model="managerVM.property.presentValue" disabled>
 
               <label for="purchaseDate">Purchase Date:</label>
               <input id="purchaseDate" type="date" required name="purchaseDate" 
-                     ng-model="waiterVM.property.purchaseDate"
+                     ng-model="managerVM.property.purchaseDate"
                      date-transformer>
 
               <label for="ageLimit">Age Limit:</label>
               <input id="ageLimit" type="number" name="ageLimit" min="0" max="99" 
-                     ng-model="waiterVM.property.ageLimit">
+                     ng-model="managerVM.property.ageLimit">
 
               <label for="custodian">Custodian:</label>
               <input id="custodian" type="text" required name="custodian" 
-                     ng-model="waiterVM.property.custodian">
+                     ng-model="managerVM.property.custodian">
 
               <label for="user">User:</label>
               <input id="user" type="text" name="user" 
-                     ng-model="waiterVM.property.user">
+                     ng-model="managerVM.property.user">
 
               <label for="location">Location:</label>
               <input id="location" type="text" required name="location" 
-                     ng-model="waiterVM.property.location">
+                     ng-model="managerVM.property.location">
 
               <label for="placement">Placement:</label>
               <input id="placement" type="text" name="placement" 
-                     ng-model="waiterVM.property.placement">
+                     ng-model="managerVM.property.placement">
             </div>
           </fieldset>
           <hr>
-          <button id="formCancel" type="reset" class="cancel-button" ng-click="waiterVM.close()">Cancel</button>
+          <button id="formCancel" type="reset" class="cancel-button" ng-click="managerVM.close()">Cancel</button>
           <button id="formSubmit" type="submit" class="submit-button" 
                   ng-disabled="!(waiterForm.$dirty && waiterForm.$valid)"
-                  ng-click="waiterVM.create()">Create</button>
+                  ng-click="managerVM.create()">Create</button>
           <button id="formEdit" type="submit" class="edit-button" 
                   ng-disabled="!(waiterForm.$dirty && waiterForm.$valid)" 
-                  ng-click="waiterVM.edit()">Edit</button>
+                  ng-click="managerVM.edit()">Edit</button>
         </form>
       </div>
     </div>

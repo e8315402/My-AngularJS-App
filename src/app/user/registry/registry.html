@@ -1,14 +1,14 @@
 <form id="registerForm">
   <label for="username">User Name:</label>
-  <input id="username" name="username" type="text" ng-model="registerVM.account.username">
+  <input id="username" name="username" type="text" ng-model="registryVM.account.username">
 
   <label for="password">Password:</label>
-  <input type="password" name="password" id="password" ng-model="registerVM.account.password">
+  <input type="password" name="password" id="password" ng-model="registryVM.account.password">
 
   <label for="role">Role:</label>
-  <select ng-model="registerVM.account.role">
-    <option ng-repeat="role in registerVM.roles" value="{{role}}">{{ role }}</option>
+  <select ng-model="registryVM.account.role">
+    <option ng-repeat="role in registryVM.roles" value="{{role}}">{{ role }}</option>
   </select>
 
-  <button type="submit" id="register" ng-click="registerVM.register()">Register</button>
+  <button type="submit" id="register" ng-click="registryVM.register()">Register</button>
 </form>

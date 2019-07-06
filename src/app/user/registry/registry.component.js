@@ -1,46 +1,38 @@
-import userRegisterTemplate from './user-register.template.html';
+import template from './registry.html';
 
-(function () {
-    'use strict';
+'use strict';
 
-    angular
-        .module ('user')
-        .component ('userRegister', userRegister());
+export default function registry() {
 
+    /** @ngInject */
+    function controller($scope, users) {
+        var vm = this;
 
-    function userRegister() {
+        vm.account = {
+            username: '',
+            password: '',
+            role: ''
+        };
+        vm.register = register;
+        vm.roles = [];
 
-        /** @ngInject */
-        function userRegisterController($scope, users){
-            var vm = this;
+        init();
 
-            vm.account = {
-                username: '',
-                password: '',
-                role: ''
-            };
-            vm.register = register;
-            vm.roles = [];
-            
-            init();
-
-            function init(){
-                users.getRoles().$promise.then((roles) => vm.roles = roles);
-            }
-
-            function register() {
-                users.save(vm.account).$promise.then(function (result) {
-                    console.log('New account has been registered :', result);
-                    vm.account = {};
-                })
-            }
+        function init() {
+            users.getRoles().$promise.then((roles) => vm.roles = roles);
         }
 
-        return {
-            controller: userRegisterController,
-            controllerAs: 'registerVM',
-            template: userRegisterTemplate
+        function register() {
+            users.save(vm.account).$promise.then(function (result) {
+                console.log('New account has been registered :', result);
+                vm.account = {};
+            })
         }
     }
 
-} ());
+    return {
+        controller: controller,
+        controllerAs: 'registryVM',
+        template: template
+    }
+}

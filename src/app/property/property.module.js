@@ -2,6 +2,10 @@ import 'angular-resource';
 import 'angular-ui-grid';
 import 'angular-ui-grid/ui-grid.min.css';
 
+import manager from './manager';
+import dashboard from './dashboard';
+import propertyService from './api';
+
 (function () {
     'use strict';
 
@@ -12,6 +16,9 @@ import 'angular-ui-grid/ui-grid.min.css';
             'ui.grid.autoResize',
             'ui.grid.selection',
             'utility'
-        ]);
+        ])
+        .factory('propertyService', propertyService)
+        .component('manager', manager())
+        .component('dashboard', dashboard());
 
 }());

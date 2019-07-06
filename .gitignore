@@ -74,3 +74,4 @@ typings/
 
 public
 FakeData
+package-lock.json

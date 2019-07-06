@@ -2,19 +2,25 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const webpack = require('webpack');
-const glob = require('glob');
+const WebpackBar = require('webpackbar');
+// const DashboardPlugin = require("webpack-dashboard/plugin");
+const WebpackNotifierPlugin = require('webpack-notifier');
 
 module.exports = {
   mode: 'development',
-  entry: {
-    modules: glob.sync("./src/app/**/*.module.js"),
-    constants: glob.sync("./src/app/**/*.constant.js"),
-    services: glob.sync("./src/app/**/*.service.js"),
-    directives: glob.sync('./src/app/**/*.directive.js'),
-    components: glob.sync("./src/app/**/*.component.js")
+  devtool: 'eval',
+  devServer: {
+    port: 3000,
+    open: true,
+    contentBase: path.join(__dirname, 'public'),
+    hot: true,
+    overlay: true,
+    proxy: {
+      "/api": "http://localhost:8080"
+    },
   },
+  entry: path.resolve(__dirname, 'src', 'app', 'app.module.js'),
   output: {
-    filename: 'js/[name].js',
     path: path.resolve(__dirname, 'public'),
     publicPath: '/'
   },
@@ -55,14 +61,11 @@ module.exports = {
     extensions: ['.json', '.js', '.jsx', '.css']
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      angular: 'angular'
-    }),
     new CleanWebpackPlugin(['public']),
     new HtmlWebpackPlugin({
       title: 'Warehouse',
       template: path.join(__dirname, 'src', 'app', 'index.template.html'),
-      favicon: path.join(__dirname, 'src', 'asserts', 'img', 'favicon.png')
+      favicon: path.join(__dirname, 'src', 'assets', 'img', 'favicon.png')
     }),
     new HtmlWebpackPlugin({
       filename: 'login/index.html',
@@ -70,22 +73,9 @@ module.exports = {
       inject: false,
       template: path.join(__dirname, 'src', 'login', 'index.html')
     }),
-    new webpack.HotModuleReplacementPlugin()
-  ],
-  devtool: 'eval',
-  watch: true,
-  stats: 'minimal'
-  // devServer: {
-  //   port: 3000,
-  //   open: true,
-  //   contentBase: path.join(__dirname, 'public'),
-  //   hot: true,
-  //   noInfo: true,
-  //   overlay: true,
-  //   writeToDisk: true,
-  //   proxy: {
-  //     "/": "http://localhost:8080"
-  //   },
-  //   openPage: 'login.html'
-  // }
+    new webpack.HotModuleReplacementPlugin(),
+    new WebpackBar(),
+    // new DashboardPlugin(),
+    new WebpackNotifierPlugin()
+  ]
 };

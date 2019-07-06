@@ -56,6 +56,6 @@ app.get('/logout', function (req, res) {
   res.redirect('/login');
 });
 
-app.listen(3000, function () {
-  console.info('The server is listening on 3000...');
+app.listen(8080, function () {
+  console.info('The server is listening on 8080...');
 });

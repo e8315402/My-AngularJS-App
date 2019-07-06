@@ -1,5 +1,13 @@
-import './index.css';
 import '@uirouter/angularjs';
+import angular from 'angular';
+
+import { MODE } from "./constant";
+import './utility';
+import './property';
+import './user';
+import introduction from './introduction';
+
+import './index.css';
 
 (function () {
   'use strict';
@@ -7,7 +15,7 @@ import '@uirouter/angularjs';
   angular
     .module('warehouse', [
       'property',
-      'utils',
+      'utility',
       'user',
       'ui.router'
     ])
@@ -15,23 +23,21 @@ import '@uirouter/angularjs';
       var helloState = {
         name: 'properties',
         url: '/properties',
-        component: 'propertyDashboard'
+        component: 'dashboard'
       }
-    
+
       var aboutState = {
         name: 'users',
         url: '/users',
-        component: 'userRegister'
+        component: 'registry'
       }
-    
+
       $stateProvider.state(helloState);
       $stateProvider.state(aboutState);
 
       $urlServiceProvider.rules.otherwise('properties');
     })
-
-  if (module.hot) {
-    module.hot.accept();
-  }
+    .constant('MODE', MODE)
+    .component('introduction', introduction());
 
 }());
