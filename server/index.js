@@ -6,14 +6,14 @@ import passport from 'passport';
 import flash from 'connect-flash';
 import { Strategy as LocalStrategy } from 'passport-local';
 
-import neDB from './neDB';
-import { default as propertyApiRoute } from './modal/property';
-import { default as userApiRoute } from './modal/user';
-import { default as roleApiRoute } from './modal/role';
+// import neDB from './neDB';
+import property from './modal/property';
+// import { default as userApiRoute } from './modal/user';
+// import { default as roleApiRoute } from './modal/role';
 import logger from './utils/logger';
 import auth from './authentication';
 
-const db = new neDB();
+// const db = new neDB();
 
 const app = express();
 
@@ -30,9 +30,9 @@ passport.use(new LocalStrategy(auth.passwordSimpleCheck));
 passport.serializeUser(auth.sessionSerialization);
 passport.deserializeUser(auth.sessionDeserialization);
 
-propertyApiRoute.init(db).registerRoute(app);
-userApiRoute.init(db).registerRoute(app);
-roleApiRoute.init(db).registerRoute(app);
+property.registerRoute(app);
+// userApiRoute.init(db).registerRoute(app);
+// roleApiRoute.init(db).registerRoute(app);
 
 app.get('/', auth.require, function (req, res) {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));

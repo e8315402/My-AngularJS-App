@@ -28,3 +28,11 @@ export function isEmpty(obj) {
 
   return true;
 }
+
+export function isUndefined(obj) {
+  return typeof obj === 'undefined';
+}
+
+export function isNull(obj) {
+  return obj === null && typeof obj === 'null';
+}

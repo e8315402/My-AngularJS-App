@@ -1,55 +1,50 @@
-export default class PropertyApi {
+import PropertyNeDB from './property.dao';
 
-  constructor(property) {
-    this.property = property;
-  }
+const propertyStorage = new PropertyNeDB();
 
-  registerRoute(app) {
+export default {
+  registerRoute: (app) => {
     app.route('/api/properties')
-      .get(this.get.bind(this))
-      .post(this.post.bind(this))
-      .delete(this.delete.bind(this));
-    app.route('/api/properties/:id').put(this.put.bind(this));
+      .get(get)
+      .post(post)
+      .delete(remove);
+    app.route('/api/properties/:id')
+      .put(put)
   }
+}
 
-  get(req, res) {
-    this.property.query(req.query, function (err, props) {
-      if (err) {
-        console.error(err);
-        return res.status(err.status >= 100 && err.status < 600 ? err.status : 500).send(err);
-      }
-      return res.send(props);
-    });
-  }
+const get = (req, res) => {
+  propertyStorage.getProperties(req.query)
+  .then((r) => res.status(200).send(r))
+  .catch((error) => {
+    console.error(error);
+    return res.status(error.status >= 100 && error.status < 600 ? error.status : 500).send(error);
+  });
+}
 
-  post(req, res) {
-    this.property.insert(req.body, function (err) {
-      if (err) {
-        console.error(err);
-        res.status(400).send(err);
-      }
-      res.send(req.body);
-    });
-  }
+const put = (req, res) => {
+  propertyStorage.updateProperty(req.params['id'], req.body)
+  .then((r) => res.status(200).send(r.toString()))
+  .catch((error) => {
+    console.error(error);
+    return res.status(error.status >= 100 && error.status < 600 ? error.status : 500).send(error);
+  });
+}
 
-  put(req, res) {
-    this.property.edit({ _id: req.params['id'] }, req.body, function (err, numReplaced) {
-      if (err) {
-        console.error(err);
-        res.status(400).send(err);
-      }
-      res.send({ found: numReplaced, data: req.body });
-    });
-  }
+const post = (req, res) => {
+  propertyStorage.createProperty(req.body)
+  .then((r) => res.status(200).send(r))
+  .catch((error) => {
+    console.error(error);
+    return res.status(error.status >= 100 && error.status < 600 ? error.status : 500).send(error.message);
+  });
+}
 
-  delete(req, res) {
-    this.property.remove(req.query, function (err, numRemoved) {
-      if (err) {
-        console.error(err);
-        return res.status(err.status >= 100 && err.status < 600 ? err.status : 500).send(err);
-      }
-      return res.send(`${numRemoved}`);
-    });
-  }
-
-};
+const remove = (req, res) => {
+  propertyStorage.deleteProperty(req.query)
+  .then((r) => res.status(200).send(r.toString()))
+  .catch((error) => {
+    console.error(error);
+    return res.status(error.status >= 100 && error.status < 600 ? error.status : 500).send(error);
+  });
+}

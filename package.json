@@ -9,7 +9,7 @@
     "test": "karma start karma.conf.js",
     "start:server": "nodemon --exec babel-node ./server/index.js",
     "start:client": "webpack-dev-server",
-    "start": "concurrently \"npm run build\" \"npm run start:server\""
+    "start": "concurrently \"npm run dev\" \"npm run start:server\""
   },
   "author": "e8315402",
   "license": "ISC",
