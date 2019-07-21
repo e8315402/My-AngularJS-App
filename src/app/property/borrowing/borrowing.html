@@ -1,0 +1,50 @@
+<form id="borrowingForm" name="borrowingForm" novalidate class="borrowingForm">
+  <fieldset>
+    <legend>Borrowing</legend>
+    <div class="mono-cols">
+      <label for="number">Number:</label>
+      <input id="number" type="text" name="number"
+             ng-disabled="true"
+             ng-model="borrowingVM.property.number">
+       
+      <label for="makeAndModel">Make / Model:</label>
+      <input id="makeAndModel" type="text" name="makeAndModel"
+             ng-disabled="true"
+             ng-model="borrowingVM.property.makeAndModel">
+      
+      <label for="type">Type:</label>
+      <input id="type" type="text" name="type"
+             ng-disabled="true"
+             ng-model="borrowingVM.property.type">
+
+      <label for="custodian">Custodian:</label>
+      <input id="custodian" type="text" name="custodian"
+             ng-disabled="true"
+             ng-model="borrowingVM.property.custodian">
+
+      <label for="user">User:</label>
+      <select id="user" name="user" ng-model="borrowingVM.property.user">
+        <option ng-repeat="user in borrowingVM.users" value="{{user.username}}">{{user.username}}</option>
+      </select>
+
+      <label for="location">Location:</label>
+      <input id="location" type="text" name="location"
+             ng-model="borrowingVM.property.location">
+
+      <label for="placement">Placement:</label>
+      <input id="placement" type="text" name="placement"
+             ng-model="borrowingVM.property.placement">
+
+      <label for="remarks">Remarks:</label>
+      <textarea id="remarks" name="remarks" cols="30" rows="10"
+                ng-model="borrowingVM.property.remarks"></textarea>
+    </div>
+  </fieldset>
+  <hr>
+  <button id="cancelBtn" type="reset" class="cancel-button"
+          ng-click="borrowingVM.cancel()">Cancel</button>
+
+  <button id="borrowBtn" type="button" class="borrow-button"
+          ng-disabled="!(borrowingForm.$dirty && borrowingForm.$valid)"
+          ng-click="borrowingVM.borrow()">Borrow</button>
+</form>

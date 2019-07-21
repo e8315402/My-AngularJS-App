@@ -13,6 +13,7 @@ export default function dashboard() {
     vm.selectedProp = null;
     vm.uiGridOptions = null;
     vm.callTheWaiter = false;
+    vm.openBorrowingPanel = false;
 
     vm.waiterMode = MODE.VIEW;
     vm.createProperty = createProperty;
@@ -20,6 +21,9 @@ export default function dashboard() {
     vm.getProperties = getProperties;
     vm.editProperty = editProperty;
     vm.deleteProperty = deleteProperty;
+    vm.borrowProperty = borrowProperty;
+    vm.closeBorrowingPanel = closeBorrowingPanel;
+    vm.borrowingDone = borrowingDone;
     vm.gridListener = {};
     vm.gridListener.onSelect = onSelect;
     vm.onCancel = onCancel;
@@ -90,6 +94,19 @@ export default function dashboard() {
         vm.selectedProp = null;
         return props;
       });
+    }
+
+    function borrowProperty() {
+      vm.openBorrowingPanel = true;
+    }
+
+    function closeBorrowingPanel() {
+      vm.openBorrowingPanel = false;
+    }
+
+    function borrowingDone() {
+      vm.openBorrowingPanel = false;
+      vm.getProperties();
     }
 
     function onSelect(row) {

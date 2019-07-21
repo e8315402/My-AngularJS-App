@@ -2,6 +2,7 @@ import '@uirouter/angularjs';
 import angular from 'angular';
 
 import { MODE } from "./constant";
+import './component';
 import './utility';
 import './property';
 import './user';

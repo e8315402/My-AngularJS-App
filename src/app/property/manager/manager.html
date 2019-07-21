@@ -1,97 +1,88 @@
-<div>
-  <div class="modal-overlay" ng-click="managerVM.close()"></div>
-  <div class="modal">
-    <div class="modal-panel">
-      <div class="modal-content">
-        <form id="managerForm" novalidate name="managerForm" class="managerForm">
-          <fieldset>
-            <legend>Property</legend>
-            <div class="mono-cols">
-              <label for="number">Number:</label>
-              <input id="number" type="text" required name="number" 
-                     ng-disabled="!managerVM.editable" 
-                     ng-model="managerVM.property.number" 
-                     ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"
-                     unique-number>
+<form id="managerForm" novalidate name="managerForm" class="managerForm">
+  <fieldset>
+    <legend>Property</legend>
+    <div class="mono-cols">
+      <label for="number">Number:</label>
+      <input id="number" type="text" required name="number" 
+              ng-disabled="!managerVM.editable" 
+              ng-model="managerVM.property.number" 
+              ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"
+              unique-number>
 
-              <label for="makeAndModel">Make / Model:</label>
-              <input id="makeAndModel" type="text" required name="makeAndModel" 
-                     ng-disabled="!managerVM.editable" 
-                     ng-model="managerVM.property.makeAndModel">
-              
-              <label for="type">Type:</label>
-              <input id="type" type="text" required name="type"
-                     ng-disabled="!managerVM.editable" 
-                     ng-model="managerVM.property.type" type="text">
+      <label for="makeAndModel">Make / Model:</label>
+      <input id="makeAndModel" type="text" required name="makeAndModel" 
+              ng-disabled="!managerVM.editable" 
+              ng-model="managerVM.property.makeAndModel">
+      
+      <label for="type">Type:</label>
+      <input id="type" type="text" required name="type"
+              ng-disabled="!managerVM.editable" 
+              ng-model="managerVM.property.type" type="text">
 
-              <label for="cost">Cost:</label>
-              <input id="cost" type="number" required name="cost" min="0" 
-                     ng-disabled="!managerVM.editable" 
-                     ng-model="managerVM.property.cost">
+      <label for="cost">Cost:</label>
+      <input id="cost" type="number" required name="cost" min="0" 
+              ng-disabled="!managerVM.editable" 
+              ng-model="managerVM.property.cost">
 
-              <label for="presentValue">Present Value:</label>
-              <input id="presentValue" type="number" name="presentValue" min="0" 
-                     ng-disabled="!managerVM.editable" 
-                     ng-model="managerVM.property.presentValue" disabled>
+      <label for="presentValue">Present Value:</label>
+      <input id="presentValue" type="number" name="presentValue" min="0" 
+              ng-disabled="!managerVM.editable" 
+              ng-model="managerVM.property.presentValue" disabled>
 
-              <label for="purchaseDate">Purchase Date:</label>
-              <input id="purchaseDate" type="date" required name="purchaseDate" 
-                     ng-disabled="!managerVM.editable" 
-                     ng-model="managerVM.property.purchaseDate"
-                     date-transformer>
+      <label for="purchaseDate">Purchase Date:</label>
+      <input id="purchaseDate" type="date" required name="purchaseDate" 
+              ng-disabled="!managerVM.editable" 
+              ng-model="managerVM.property.purchaseDate"
+              date-transformer>
 
-              <label for="ageLimit">Age Limit:</label>
-              <input id="ageLimit" type="number" name="ageLimit" min="0" max="99" 
-                     ng-disabled="!managerVM.editable" 
-                     ng-model="managerVM.property.ageLimit">
+      <label for="ageLimit">Age Limit:</label>
+      <input id="ageLimit" type="number" name="ageLimit" min="0" max="99" 
+              ng-disabled="!managerVM.editable" 
+              ng-model="managerVM.property.ageLimit">
 
-              <label for="custodian">Custodian:</label>
-              <input id="custodian" type="text" required name="custodian" 
-                     ng-disabled="!managerVM.editable" 
-                     ng-model="managerVM.property.custodian">
+      <label for="custodian">Custodian:</label>
+      <input id="custodian" type="text" required name="custodian" 
+              ng-disabled="!managerVM.editable" 
+              ng-model="managerVM.property.custodian">
 
-              <label for="user">User:</label>
-              <input id="user" type="text" name="user" 
-                     ng-disabled="!managerVM.editable" 
-                     ng-model="managerVM.property.user">
+      <label for="user">User:</label>
+      <input id="user" type="text" name="user" 
+              ng-disabled="!managerVM.editable" 
+              ng-model="managerVM.property.user">
 
-              <label for="location">Location:</label>
-              <input id="location" type="text" required name="location" 
-                     ng-disabled="!managerVM.editable" 
-                     ng-model="managerVM.property.location">
+      <label for="location">Location:</label>
+      <input id="location" type="text" required name="location" 
+              ng-disabled="!managerVM.editable" 
+              ng-model="managerVM.property.location">
 
-              <label for="placement">Placement:</label>
-              <input id="placement" type="text" name="placement" 
-                     ng-disabled="!managerVM.editable" 
-                     ng-model="managerVM.property.placement">
-              
-              <label for="remarks">Remarks:</label>
-              <textarea name="remarks" id="remarks" cols="30" rows="10"
-                        ng-disabled="!managerVM.editable" 
-                        ng-model="managerVM.property.remarks"
-              ></textarea>
-            </div>
-          </fieldset>
-          <hr>
-          <button id="formCancel" type="reset" class="cancel-button" 
-                  ng-show="managerVM.mode === managerVM.MODE.NEW || managerVM.mode === managerVM.MODE.EDIT"
-                  ng-click="managerVM.close()">Cancel</button>
-          
-          <button id="formClose" type="button" class="close-button"
-                  ng-show="managerVM.mode === managerVM.MODE.VIEW"
-                  ng-click="managerVM.close()">Close</button>
-
-          <button id="formSubmit" type="submit" class="submit-button" 
-                  ng-show="managerVM.mode === managerVM.MODE.NEW"
-                  ng-disabled="!(managerForm.$dirty && managerForm.$valid)"
-                  ng-click="managerVM.create()">Create</button>
-
-          <button id="formEdit" type="submit" class="edit-button" 
-                  ng-show="managerVM.mode === managerVM.MODE.EDIT"
-                  ng-disabled="!(managerForm.$dirty && managerForm.$valid)" 
-                  ng-click="managerVM.edit()">Edit</button>
-        </form>
-      </div>
+      <label for="placement">Placement:</label>
+      <input id="placement" type="text" name="placement" 
+              ng-disabled="!managerVM.editable" 
+              ng-model="managerVM.property.placement">
+      
+      <label for="remarks">Remarks:</label>
+      <textarea name="remarks" id="remarks" cols="30" rows="10"
+                ng-disabled="!managerVM.editable" 
+                ng-model="managerVM.property.remarks"
+      ></textarea>
     </div>
-  </div>
-</div>
+  </fieldset>
+  <hr>
+  <button id="formCancel" type="reset" class="cancel-button" 
+          ng-show="managerVM.mode === managerVM.MODE.NEW || managerVM.mode === managerVM.MODE.EDIT"
+          ng-click="managerVM.close()">Cancel</button>
+  
+  <button id="formClose" type="button" class="close-button"
+          ng-show="managerVM.mode === managerVM.MODE.VIEW"
+          ng-click="managerVM.close()">Close</button>
+
+  <button id="formSubmit" type="submit" class="submit-button" 
+          ng-show="managerVM.mode === managerVM.MODE.NEW"
+          ng-disabled="!(managerForm.$dirty && managerForm.$valid)"
+          ng-click="managerVM.create()">Create</button>
+
+  <button id="formEdit" type="submit" class="edit-button" 
+          ng-show="managerVM.mode === managerVM.MODE.EDIT"
+          ng-disabled="!(managerForm.$dirty && managerForm.$valid)" 
+          ng-click="managerVM.edit()">Edit</button>
+</form>

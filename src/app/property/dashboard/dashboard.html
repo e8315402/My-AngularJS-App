@@ -5,6 +5,7 @@
     <button ng-click="dashboardVM.editProperty()" ng-disabled="!dashboardVM.selectedProp">Edit</button>
     <button ng-click="dashboardVM.deleteProperty()" ng-disabled="!dashboardVM.selectedProp">Delete</button>
     <button ng-click="dashboardVM.getProperties()">Refresh</button>
+    <button ng-click="dashboardVM.borrowProperty()" ng-disabled="!dashboardVM.selectedProp">Borrowing</button>
     <div class="lds-ripple" ng-show="dashboardVM.gettingProperties"><div></div><div></div></div>
   </div>
   <hr>
@@ -16,11 +17,19 @@
          ui-grid-resize-columns>
     </div>
   </div>
-  <wh-manager 
-    mode="dashboardVM.waiterMode" 
-    property="dashboardVM.selectedProp" 
-    on-cancel="dashboardVM.onCancel()" 
-    on-done="dashboardVM.onDone()"
-    ng-if="dashboardVM.callTheWaiter">
-  </wh-manager>
+  <wh-modal ng-if="dashboardVM.callTheWaiter" on-close="dashboardVM.onCancel()">
+    <wh-manager 
+      mode="dashboardVM.waiterMode" 
+      property="dashboardVM.selectedProp" 
+      on-cancel="dashboardVM.onCancel()" 
+      on-done="dashboardVM.onDone()">
+    </wh-manager>
+  </wh-modal>
+  <wh-modal ng-if="dashboardVM.openBorrowingPanel" on-close="dashboardVM.closeBorrowingPanel()">
+    <wh-borrowing
+      property="dashboardVM.selectedProp"
+      on-cancel="dashboardVM.closeBorrowingPanel()"
+      on-done="dashboardVM.borrowingDone()">
+    </wh-borrowing>
+  </wh-modal>
 </div>
