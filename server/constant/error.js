@@ -5,3 +5,11 @@ export class LackNecessaryArgumentError extends Error {
     this.message = args;
   }
 };
+
+export class UnknownParameterError extends Error {
+  constructor(args){
+    super(args);
+    this.status = 400;
+    this.message = args;
+  }
+}

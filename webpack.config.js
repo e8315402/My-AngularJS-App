@@ -4,7 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 // const DashboardPlugin = require("webpack-dashboard/plugin");
-const WebpackNotifierPlugin = require('webpack-notifier');
+// const WebpackNotifierPlugin = require('webpack-notifier');
 
 module.exports = {
   mode: 'development',
@@ -76,6 +76,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new WebpackBar(),
     // new DashboardPlugin(),
-    new WebpackNotifierPlugin()
+    // new WebpackNotifierPlugin()
   ]
 };

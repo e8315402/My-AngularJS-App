@@ -4,7 +4,7 @@ import { isNull, isUndefined } from "../../utils/tools";
 export default class Property {
 
   constructor({number, makeAndModel, type, cost, presentValue, purchaseDate, ageLimit, custodian, user, location, placement, remarks}) {
-    requireDataChecker(number, makeAndModel, type, cost, presentValue, purchaseDate, ageLimit, custodian, user, location, placement, remarks);
+    requiredDataChecker(number, makeAndModel, type, cost, presentValue, purchaseDate, ageLimit, custodian, user, location, placement, remarks);
     this.number = number;
     this.makeAndModel = makeAndModel;
     this.type = type;
@@ -18,27 +18,9 @@ export default class Property {
     this.placement = placement;
     this.remarks = remarks;
   }
-
-  insert(prop, cb) {
-    prop._TABLE = 'PROPERTY';
-    this.db.insert(prop, cb);
-  }
-
-  query(predicate, cb) {
-    this.db.find({ $and: [ { _TABLE: 'PROPERTY' } , predicate] }, cb);
-  }
-
-  remove(predicate, cb) {
-    this.db.remove({ $and: [ { _TABLE: 'PROPERTY' } , predicate] }, cb);
-  }
-
-  edit(predicate, update, cb) {
-    update._TABLE = 'PROPERTY';
-    this.db.update({ $and: [ { _TABLE: 'PROPERTY' } , predicate] }, update, {}, cb);
-  }
 };
 
-const requireDataChecker = (number, makeAndModel, type, cost, presentValue, purchaseDate, ageLimit, custodian, user, location, placement, remarks) => {
+const requiredDataChecker = (number, makeAndModel, type, cost, presentValue, purchaseDate, ageLimit, custodian, user, location, placement, remarks) => {
   let lackNecessaryAttributes = [];
   if (isNull(number) || isUndefined(number)) lackNecessaryAttributes.push('Number is required.')
   if (isNull(makeAndModel) || isUndefined(makeAndModel)) lackNecessaryAttributes.push('Make / model is required.');
