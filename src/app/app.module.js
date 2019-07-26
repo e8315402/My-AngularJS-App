@@ -6,7 +6,7 @@ import './component';
 import './utility';
 import './property';
 import './user';
-import introduction from './introduction';
+import navbar from './navbar';
 
 import './index.css';
 
@@ -39,6 +39,6 @@ import './index.css';
       $urlServiceProvider.rules.otherwise('properties');
     })
     .constant('MODE', MODE)
-    .component('whIntroduction', introduction());
+    .component('whNavbar', navbar());
 
 }());

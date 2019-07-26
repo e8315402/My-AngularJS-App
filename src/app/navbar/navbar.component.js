@@ -1,7 +1,7 @@
-import template from "./introduction.html";
+import template from "./navbar.html";
 import './style/index.css';
 
-export default function introduction() {
+export default function navbar() {
     'use strict';
 
     /** @ngInject */

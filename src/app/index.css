@@ -11,16 +11,10 @@ html, body {
   height: 100%;
 }
 
-.navbar {
-  max-width: 200px;
-  flex-basis: 200px;
-  flex-shrink: 10;
-  border-right: 2px solid #c1c1c1;
-}
-
 .content {
+  position: relative;
   flex-grow: 10;
   flex-shrink: 1;
-  padding: 15px;
-  position: relative;
+  padding-right: 30px;
+  padding-left: 30px;
 }
