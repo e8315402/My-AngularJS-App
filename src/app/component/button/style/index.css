@@ -1,0 +1,58 @@
+.__wh_mtd_btn {
+  border: none;
+  background-color: #ffffff;
+  padding: 4px;
+  border-radius: 4px;
+  color: #444444;
+}
+
+.__wh_mtd_btn:not(:disabled):hover {
+  background-color: #f4f4f4;
+}
+
+.__wh_mtd_btn:focus {
+  outline: none;
+}
+
+.__wh_mtd_btn:disabled {
+  color: #bbbbbb;
+}
+
+.__wh_mtd_btn_lg {
+  font-size: 16px;
+  min-width: 100px;
+  min-height: 30px;
+}
+
+.__wh_mtd_btn_ol {
+  border: 1px solid #afafaf;
+}
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple .ripple-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.ripple .ripple-container span {
+  transform: scale(0);
+  border-radius: 100%;
+  position: absolute;
+  opacity: 0.75;
+  background-color: rgb(192, 192, 192);
+  animation: ripple 1000ms;
+}
+
+@keyframes ripple {
+  to {
+    opacity: 0;
+    transform: scale(2);
+  }
+}

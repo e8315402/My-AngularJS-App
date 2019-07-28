@@ -1,14 +1,14 @@
 <div id="dashboard" class="dashboard">
   <div id="dashboardToolbar" class="pd-toolbar">
-    <button ng-click="dashboardVM.createProperty()">Create</button>
-    <button ng-click="dashboardVM.checkProperty()" ng-disabled="!dashboardVM.selectedProp">View</button>
-    <button ng-click="dashboardVM.editProperty()" ng-disabled="!dashboardVM.selectedProp">Edit</button>
-    <button ng-click="dashboardVM.deleteProperty()" ng-disabled="!dashboardVM.selectedProp">Delete</button>
-    <button ng-click="dashboardVM.getProperties()">Refresh</button>
-    <button ng-click="dashboardVM.borrowProperty()" ng-disabled="!dashboardVM.selectedProp">Borrowing</button>
+    <button wh-button lg ol ng-click="dashboardVM.createProperty()">Create</button>
+    <button wh-button lg ol ng-click="dashboardVM.checkProperty()" ng-disabled="!dashboardVM.selectedProp">View</button>
+    <button wh-button lg ol ng-click="dashboardVM.editProperty()" ng-disabled="!dashboardVM.selectedProp">Edit</button>
+    <button wh-button lg ol ng-click="dashboardVM.deleteProperty()" ng-disabled="!dashboardVM.selectedProp">Delete</button>
+    <button wh-button lg ol ng-click="dashboardVM.getProperties()">Refresh</button>
+    <button wh-button lg ol ng-click="dashboardVM.borrowProperty()" ng-disabled="!dashboardVM.selectedProp">Borrowing</button>
     <div class="lds-ripple" ng-show="dashboardVM.gettingProperties"><div></div><div></div></div>
   </div>
-  <hr>
+  <!-- <hr> -->
   <div class="pd-content">
     <div id="propertyList" 
          ui-grid="dashboardVM.uiGridOptions" 

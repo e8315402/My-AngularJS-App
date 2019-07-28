@@ -1,3 +1,5 @@
+import utility from './utility.factory';
+
 import dateTransformer from './dateTransformer.directive';
 import uniqueNumber from './uniqueNumber.directive';
 
@@ -8,6 +10,7 @@ import uniqueNumber from './uniqueNumber.directive';
         .module('utility', [
             
         ])
+        .factory('whUtility', utility)
         .directive('dateTransformer', dateTransformer)
         .directive('uniqueNumber', uniqueNumber);
 

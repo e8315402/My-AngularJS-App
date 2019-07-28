@@ -1,0 +1,4 @@
+<button ng-class="buttonVM.class" ng-mousedown="buttonVM.addRipple($event.currentTarget, $event.pageX, $event.pageY)" ng-mouseup="buttonVM.cleanUp($event)">
+  <ng-transclude></ng-transclude>
+  <div wh-ripple-container></div>
+</button>
