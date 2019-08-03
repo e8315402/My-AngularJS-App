@@ -1,0 +1,50 @@
+.ui-grid {
+  border-radius: 4px;
+}
+
+.ui-grid-header-cell {
+  background-color: #ffffff !important;
+}
+
+.ui-grid-row, .ui-grid-cell {
+  height: 40px !important;
+}
+
+.ui-grid-row:not(.ui-grid-row-selected):not(:hover) .ui-grid-cell {
+  border: none;
+  border-bottom: 1px solid #d4d4d4;
+  background-color: #ffffff !important;
+}
+
+.ui-grid-row.ui-grid-row-selected>[ui-grid-row]>.ui-grid-cell {
+  border-right: none;
+  background-color: #c9dde1;
+}
+
+.ui-grid-row:hover:not(.ui-grid-row-selected) .ui-grid-cell {
+  border-right: none;
+  background-color: #f4f4f4 !important;
+}
+
+.ui-grid-cell-contents {
+  line-height: 29px;
+  font-size: 14px;
+}
+
+.ui-grid-viewport::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.ui-grid-viewport::-webkit-scrollbar-track {
+  border: 1px solid #d4d4d4;
+  background: none;
+}
+
+.ui-grid-viewport::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.ui-grid-viewport::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

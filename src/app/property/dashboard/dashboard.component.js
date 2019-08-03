@@ -39,18 +39,18 @@ export default function dashboard() {
     function initPropertyGrid() {
       vm.uiGridOptions = {
         columnDefs: [
-          { name: 'number', field: 'number' },
-          { name: 'makeAndModel', field: 'makeAndModel' },
-          { name: 'type', field: 'type' },
-          { name: 'cost', field: 'cost' },
-          { name: 'presentValue', field: 'presentValue' },
-          { name: 'purchaseDate', field: 'purchaseDate' },
-          { name: 'ageLimit', field: 'ageLimit' },
-          { name: 'custodian', field: 'custodian' },
-          { name: 'user', field: 'user' },
-          { name: 'location', field: 'location' },
-          { name: 'placement', field: 'placement' },
-          { name: 'remarks', field: 'remarks' }
+          { name: 'number', field: 'number', minWidth: 175 },
+          { name: 'makeAndModel', field: 'makeAndModel', minWidth: 140, width: 250 },
+          { name: 'type', field: 'type', minWidth: 100, width: 120 },
+          { name: 'cost', field: 'cost', minWidth: 100, width: 120 },
+          { name: 'presentValue', field: 'presentValue', minWidth: 120, width: 120 },
+          { name: 'purchaseDate', field: 'purchaseDate', minWidth: 120, width: 120 },
+          { name: 'ageLimit', field: 'ageLimit', minWidth: 100, width: 120 },
+          { name: 'custodian', field: 'custodian', minWidth: 200, width: 200 },
+          { name: 'user', field: 'user', minWidth: 150, width: 150 },
+          { name: 'location', field: 'location', minWidth: 200, width: 200 },
+          { name: 'placement', field: 'placement', minWidth: 200, width: 200 },
+          { name: 'remarks', field: 'remarks', minWidth: 150, width: 200 }
         ],
         data: 'dashboardVM.properties',
         minimumColumnSize: 100,

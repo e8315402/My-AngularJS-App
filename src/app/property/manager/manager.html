@@ -68,20 +68,20 @@
     </div>
   </fieldset>
   <hr>
-  <button id="formCancel" type="reset" class="cancel-button" 
+  <button id="formCancel" type="reset" class="cancel-button" wh-button ol
           ng-show="managerVM.mode === managerVM.MODE.NEW || managerVM.mode === managerVM.MODE.EDIT"
           ng-click="managerVM.close()">Cancel</button>
   
-  <button id="formClose" type="button" class="close-button"
+  <button id="formClose" type="button" class="close-button" wh-button
           ng-show="managerVM.mode === managerVM.MODE.VIEW"
           ng-click="managerVM.close()">Close</button>
 
-  <button id="formSubmit" type="submit" class="submit-button" 
+  <button id="formSubmit" type="submit" class="submit-button" wh-button ol
           ng-show="managerVM.mode === managerVM.MODE.NEW"
           ng-disabled="!(managerForm.$dirty && managerForm.$valid)"
           ng-click="managerVM.create()">Create</button>
 
-  <button id="formEdit" type="submit" class="edit-button" 
+  <button id="formEdit" type="submit" class="edit-button" wh-button ol
           ng-show="managerVM.mode === managerVM.MODE.EDIT"
           ng-disabled="!(managerForm.$dirty && managerForm.$valid)" 
           ng-click="managerVM.edit()">Edit</button>
